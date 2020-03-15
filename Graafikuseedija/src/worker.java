@@ -49,6 +49,42 @@ public class worker {
         return friday;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSeniority(int seniority) {
+        this.seniority = seniority;
+    }
+
+    public void setMonday(String monday) {
+        this.monday = monday;
+    }
+
+    public void setTuesday(String tuesday) {
+        this.tuesday = tuesday;
+    }
+
+    public void setWednesday(String wednesday) {
+        this.wednesday = wednesday;
+    }
+
+    public void setThursday(String thursday) {
+        this.thursday = thursday;
+    }
+
+    public void setFriday(String friday) {
+        this.friday = friday;
+    }
+
+    public void setSaturday(String saturday) {
+        this.saturday = saturday;
+    }
+
+    public void setSunday(String sunday) {
+        this.sunday = sunday;
+    }
+
     public String getSaturday() {
         return saturday;
     }
