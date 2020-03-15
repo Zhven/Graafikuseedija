@@ -11,7 +11,7 @@ import java.util.*;
 public class testReadFromExcel {
     public static void main(String[] args) throws IOException {
 
-        File myFile = new File("Graafikuseedija/src/test_andmed.xlsx");
+        File myFile = new File("Graafikuseedija/src/Testing testing(1-24).xlsx");
         FileInputStream fis = new FileInputStream(myFile);
 
         // Finds the workbook instance for XLSX file
@@ -35,10 +35,9 @@ public class testReadFromExcel {
                 Cell cell = cellIterator.next();
                 int veerg = cell.getColumnIndex();
                 if (veerg > 3){
+                    worker blank = new worker(cell.getStringCellValue(), 0,"","","","","","","");
                     switch (cell.getCellType()) {
                         case Cell.CELL_TYPE_STRING: System.out.print(cell.getStringCellValue() + "\t");
-                            break;
-                        case Cell.CELL_TYPE_NUMERIC: System.out.print(cell.getNumericCellValue() + "\t");
                             break;
                         default :
                     }
