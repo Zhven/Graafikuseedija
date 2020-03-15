@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Graafikuseedija/Graafikuseedija.iml" filepath="$PROJECT_DIR$/Graafikuseedija/Graafikuseedija.iml" />
       <module fileurl="file://$PROJECT_DIR$/graafikuseedija.iml" filepath="$PROJECT_DIR$/graafikuseedija.iml" />
     </modules>
   </component>
