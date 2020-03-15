@@ -1,4 +1,5 @@
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class testReadFromExcel {
+
     public static void main(String[] args) throws IOException {
         List<worker> workers = new ArrayList<worker>();
         File myFile = new File("Graafikuseedija/src/Testing testing(1-24).xlsx");
@@ -34,31 +36,31 @@ public class testReadFromExcel {
             Cell cell = cellIterator.next();
             cell = cellIterator.next();
             cell = cellIterator.next();
+            cell = cellIterator.next();
+            cell = cellIterator.next();
+            System.out.println(cell);
             workers.add(new worker(cell.getStringCellValue(), 0,"","","","","","",""));
-            cell = cellIterator.next();
-            //Should add a method to optimize the process
-            System.out.println(cell.getStringCellValue());
-            if (cell.getStringCellValue() == ""){
-                workers.get(id).setMonday("");
+
+            try {
+                cell = cellIterator.next();
+                System.out.println(cell.getCellTypeEnum());
+                cell = cellIterator.next();
+                System.out.println(cell.getCellTypeEnum());
+                cell = cellIterator.next();
+                System.out.println(cell.getCellTypeEnum());
+                cell = cellIterator.next();
+                System.out.println(cell.getCellTypeEnum());
+                cell = cellIterator.next();
+                System.out.println(cell.getCellTypeEnum());
+                cell = cellIterator.next();
+                System.out.println(cell.getCellTypeEnum());
+                cell = cellIterator.next();
+                System.out.println(cell.getCellTypeEnum());
+            }catch (Exception e){
+                System.out.println("error");
             }
-            else {
-                workers.get(id).setMonday(cell.getStringCellValue());
-            }
-            cell = cellIterator.next();
-            if (cell.getStringCellValue() == ""){
-                workers.get(id).setTuesday("");
-            }
-            else {
-                workers.get(id).setTuesday(cell.getStringCellValue());
-            }
-
-
-
-
-
-
-            }
+            id++;
         }
-
-
+        System.out.println(workers);
     }
+}
