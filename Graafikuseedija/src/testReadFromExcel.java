@@ -1,65 +1,58 @@
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
 public class testReadFromExcel {
 
+    private static final String FILE_NAME = "Graafikuseedija/src/Testing testing(1-24).xlsx";
+
     public static void main(String[] args) throws IOException {
         List<worker> workers = new ArrayList<worker>();
-        File myFile = new File("Graafikuseedija/src/Testing testing(1-24).xlsx");
-        FileInputStream fis = new FileInputStream(myFile);
+        try {
 
-        // Finds the workbook instance for XLSX file
-        XSSFWorkbook myWorkBook = new XSSFWorkbook (fis);
-
-        // Return first sheet from the XLSX workbook
-        XSSFSheet mySheet = myWorkBook.getSheetAt(0);
-
-        // Get iterator to all the rows in current sheet
-        Iterator<Row> rowIterator = mySheet.iterator();
-
-        // Traversing over each row of XLSX file
-        Row row = rowIterator.next();
-        while (rowIterator.hasNext()) {
-            row = rowIterator.next();
-
-            // For each row, iterate through each columns
-            Iterator<Cell> cellIterator = row.cellIterator();
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new XSSFWorkbook(excelFile);
+            Sheet sheet = ((XSSFWorkbook) workbook).getSheetAt(0);
+            int rowStart = Math.max(1, sheet.getFirstRowNum());
+            int rowEnd = Math.max(100, sheet.getLastRowNum());
+            int columnStart = 4;
+            int columnEnd = 12;
             int id = 0;
-            Cell cell = cellIterator.next();
-            cell = cellIterator.next();
-            cell = cellIterator.next();
-            cell = cellIterator.next();
-            cell = cellIterator.next();
-            System.out.println(cell);
-            workers.add(new worker(cell.getStringCellValue(), 0,"","","","","","",""));
+            for (int rowNum = rowStart; rowNum < rowEnd; rowNum++) {
+                Row r = sheet.getRow(rowNum);
+                if (r == null) {
+                    // This whole row is empty
+                    // Handle it as needed
+                    break;
+                }
+                workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, "","","","","","","" ));
 
-            try {
-                cell = cellIterator.next();
-                System.out.println(cell.getCellTypeEnum());
-                cell = cellIterator.next();
-                System.out.println(cell.getCellTypeEnum());
-                cell = cellIterator.next();
-                System.out.println(cell.getCellTypeEnum());
-                cell = cellIterator.next();
-                System.out.println(cell.getCellTypeEnum());
-                cell = cellIterator.next();
-                System.out.println(cell.getCellTypeEnum());
-                cell = cellIterator.next();
-                System.out.println(cell.getCellTypeEnum());
-                cell = cellIterator.next();
-                System.out.println(cell.getCellTypeEnum());
-            }catch (Exception e){
-                System.out.println("error");
+                int lastColumn = Math.max(columnEnd, columnStart);
+                int j = 0;
+                for (int cn = columnStart + 1; cn < lastColumn; cn++) {
+                    Cell c = r.getCell(cn, Row.RETURN_BLANK_AS_NULL);
+                    if (c == null) {
+                        // The spreadsheet is empty in this cell
+                        System.out.println("Empty cell");
+
+                    } else {
+                        // Do something useful with the cell's contents
+                        System.out.println(c);
+
+                    }
+                    j++;
+                }
+                id++;
             }
-            id++;
+        }catch (Exception e){
+            System.out.println("error");
         }
         System.out.println(workers);
     }
