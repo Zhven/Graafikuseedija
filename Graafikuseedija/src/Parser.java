@@ -3,9 +3,10 @@ import java.util.List;
 import java.util.Random;
 
 public class Parser {
-    public static void main(String[] args) {
+
+    public static Object[][] parse() {
         List<worker> workers = readFromXML.readInput();
-        Object[][] output = {
+        String[][] output = {
                 {"Monday morning", "Monday evening", "Monday night"},
                 {"Tuesday morning", "Tuesday evening", "Tuesday night"},
                 {"Wednesday morning", "Wednesday evening", "Wednesday night"},
@@ -30,6 +31,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
+
                             if ((workers.get(randint).getMonday() == ""
                                     || !workers.get(randint).getMonday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
@@ -41,13 +43,16 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        StringBuilder shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
+
                         break;
                     case 1:
                         int shiftRequiredSize2 = 6;
@@ -59,7 +64,7 @@ public class Parser {
                             if ((workers.get(randint).getMonday() == ""
                                     || !workers.get(randint).getMonday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -67,13 +72,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 2:
                         int shiftRequiredSize3 = 3;
@@ -86,7 +93,7 @@ public class Parser {
                             if ((workers.get(randint).getMonday() == ""
                                     || !workers.get(randint).getMonday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -94,13 +101,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 3:
                         int shiftRequiredSize4 = 6;
@@ -120,13 +129,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 4:
                         int shiftRequiredSize5 = 6;
@@ -138,7 +149,7 @@ public class Parser {
                             if ((workers.get(randint).getTuesday() == ""
                                     || !workers.get(randint).getTuesday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -146,13 +157,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 5:
                         int shiftRequiredSize6 = 3;
@@ -165,7 +178,7 @@ public class Parser {
                             if ((workers.get(randint).getTuesday() == ""
                                     || !workers.get(randint).getTuesday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -173,13 +186,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 6:
                         int shiftRequiredSize7 = 6;
@@ -199,13 +214,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 7:
                         int shiftRequiredSize8 = 6;
@@ -217,7 +234,7 @@ public class Parser {
                             if ((workers.get(randint).getWednesday() == ""
                                     || !workers.get(randint).getWednesday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -225,13 +242,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 8:
                         int shiftRequiredSize9 = 3;
@@ -244,7 +263,7 @@ public class Parser {
                             if ((workers.get(randint).getWednesday() == ""
                                     || !workers.get(randint).getWednesday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -252,13 +271,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 9:
                         int shiftRequiredSize10 = 6;
@@ -278,13 +299,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 10:
                         int shiftRequiredSize11 = 6;
@@ -296,7 +319,7 @@ public class Parser {
                             if ((workers.get(randint).getThursday() == ""
                                     || !workers.get(randint).getThursday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -304,13 +327,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 11:
                         int shiftRequiredSize12 = 3;
@@ -323,7 +348,7 @@ public class Parser {
                             if ((workers.get(randint).getThursday() == ""
                                     || !workers.get(randint).getThursday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -331,13 +356,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 12:
                         int shiftRequiredSize13 = 6;
@@ -357,13 +384,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 13:
                         int shiftRequiredSize14 = 6;
@@ -375,7 +404,7 @@ public class Parser {
                             if ((workers.get(randint).getFriday() == ""
                                     || !workers.get(randint).getFriday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -383,13 +412,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 14:
                         int shiftRequiredSize15 = 3;
@@ -402,7 +433,7 @@ public class Parser {
                             if ((workers.get(randint).getFriday() == ""
                                     || !workers.get(randint).getFriday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -410,13 +441,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 15:
                         int shiftRequiredSize16 = 6;
@@ -436,13 +469,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 16:
                         int shiftRequiredSize17 = 6;
@@ -454,7 +489,7 @@ public class Parser {
                             if ((workers.get(randint).getSaturday() == ""
                                     || !workers.get(randint).getSaturday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -462,13 +497,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 17:
                         int shiftRequiredSize18 = 3;
@@ -481,7 +518,7 @@ public class Parser {
                             if ((workers.get(randint).getSaturday() == ""
                                     || !workers.get(randint).getSaturday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -489,13 +526,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 18:
                         int shiftRequiredSize19 = 6;
@@ -515,13 +554,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 19:
                         int shiftRequiredSize20 = 6;
@@ -533,7 +574,7 @@ public class Parser {
                             if ((workers.get(randint).getSunday() == ""
                                     || !workers.get(randint).getSunday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -541,13 +582,15 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
                         break;
                     case 20:
                         int shiftRequiredSize21 = 3;
@@ -560,7 +603,7 @@ public class Parser {
                             if ((workers.get(randint).getSunday() == ""
                                     || !workers.get(randint).getSunday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() !=40
+                                    && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
@@ -568,20 +611,21 @@ public class Parser {
                             }
                         }
                         for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))){
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift()+8);
+                            if (!shift.contains(workers.get(k))) {
+                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
                             }
                         }
-                        for (Object worker : shift) {
-                            System.out.println(worker);
+                        shiftParticipants = new StringBuilder();
+                        for (int k = 0; k < shift.size(); k++) {
+                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
                         }
+                        output[i][j] = shiftParticipants.toString();
+
                         break;
                 }
                 id++;
             }
-
         }
-
-
+        return output;
     }
 }

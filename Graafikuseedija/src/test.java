@@ -1,7 +1,5 @@
 public class test {
     public static void main(String[] args) {
-        for (Object worker : readFromXML.readInput()){
-            System.out.println(worker);
-        }
+        System.out.println(Parser.parse().toString());
     }
 }
