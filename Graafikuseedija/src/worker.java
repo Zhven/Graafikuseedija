@@ -1,6 +1,7 @@
 public class worker {
     private String name;
     private int seniority;
+    private int hours;
     private String monday;
     private String tuesday;
     private String wednesday;
@@ -9,9 +10,10 @@ public class worker {
     private String saturday;
     private String sunday;
 
-    public worker(String name, int seniority, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday) {
+    public worker(String name, int seniority, int hours, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday) {
         this.name = name;
         this.seniority = seniority;
+        this.hours = hours;
         this.monday = monday;
         this.tuesday = tuesday;
         this.wednesday = wednesday;
@@ -91,6 +93,14 @@ public class worker {
 
     public String getSunday() {
         return sunday;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
     }
 
     @Override
