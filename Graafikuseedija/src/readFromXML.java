@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
-public class testReadFromExcel {
+public class readFromXML {
     private static final String FILE_NAME = "Graafikuseedija/src/Testing testing(1-24).xlsx";
 
     public static void main(String[] args) throws IOException {
@@ -39,12 +39,33 @@ public class testReadFromExcel {
                     Cell c = r.getCell(cn, Row.RETURN_BLANK_AS_NULL);
                     if (c == null) {
                         // The spreadsheet is empty in this cell
-                        System.out.println("Empty cell");
+                        //System.out.println("Empty cell");
 
                     } else {
                         // Do something useful with the cell's contents
-                        System.out.println(c);
-
+                        switch (cn){
+                            case 5:
+                                workers.get(id).setMonday(c.getStringCellValue());
+                                break;
+                            case 6:
+                                workers.get(id).setTuesday(c.getStringCellValue());
+                                break;
+                            case 7:
+                                workers.get(id).setWednesday(c.getStringCellValue());
+                                break;
+                            case 8:
+                                workers.get(id).setThursday(c.getStringCellValue());
+                                break;
+                            case 9:
+                                workers.get(id).setFriday(c.getStringCellValue());
+                                break;
+                            case 10:
+                                workers.get(id).setSaturday(c.getStringCellValue());
+                                break;
+                            case 11:
+                                workers.get(id).setSunday(c.getStringCellValue());
+                                break;
+                        }
                     }
                     j++;
                 }
@@ -53,6 +74,8 @@ public class testReadFromExcel {
         }catch (Exception e){
             System.out.println("error");
         }
-        System.out.println(workers);
+        for (int i = 0; i < workers.size(); i++) {
+            System.out.println(workers.get(i));
+        }
     }
 }
