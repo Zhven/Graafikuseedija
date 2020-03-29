@@ -108,6 +108,7 @@ public class worker {
         return "worker{" +
                 "name='" + name + '\'' +
                 ", seniority='" + seniority + '\'' +
+                ", hours='" + hours + '\'' +
                 ", monday='" + monday + '\'' +
                 ", tuesday='" + tuesday + '\'' +
                 ", wednesday='" + wednesday + '\'' +
