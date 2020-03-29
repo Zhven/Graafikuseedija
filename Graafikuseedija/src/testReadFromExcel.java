@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class testReadFromExcel {
-
     private static final String FILE_NAME = "Graafikuseedija/src/Testing testing(1-24).xlsx";
 
     public static void main(String[] args) throws IOException {
