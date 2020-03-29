@@ -3,16 +3,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.*;
 
 public class readFromXML {
     private static final String FILE_NAME = "Graafikuseedija/src/Testing testing(1-24).xlsx";
 
-    public static ArrayList<worker> readInput{
+    public static List<worker> readInput(){
         List<worker> workers = new ArrayList<worker>();
         try {
-
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet sheet = ((XSSFWorkbook) workbook).getSheetAt(0);
@@ -28,7 +26,7 @@ public class readFromXML {
                     // Handle it as needed
                     break;
                 }
-                workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0,"","","","","","", "" ));
+                workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0, "","","","","","","" ));
 
                 int lastColumn = Math.max(columnEnd, columnStart);
                 for (int cn = columnStart + 1; cn < lastColumn; cn++) {
@@ -69,10 +67,6 @@ public class readFromXML {
         }catch (Exception e){
             System.out.println("error");
         }
-        for (int i = 0; i < workers.size(); i++) {
-            System.out.println(workers.get(i));
-        }
-
         return workers;
     }
 }
