@@ -1,11 +1,8 @@
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -34,7 +31,6 @@ public class readFromXML {
                 workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, "","","","","","","" ));
 
                 int lastColumn = Math.max(columnEnd, columnStart);
-                int j = 0;
                 for (int cn = columnStart + 1; cn < lastColumn; cn++) {
                     Cell c = r.getCell(cn, Row.RETURN_BLANK_AS_NULL);
                     if (c == null) {
@@ -67,7 +63,6 @@ public class readFromXML {
                                 break;
                         }
                     }
-                    j++;
                 }
                 id++;
             }
