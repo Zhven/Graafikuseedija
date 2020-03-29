@@ -14,7 +14,7 @@ public class readFromXML {
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet sheet = ((XSSFWorkbook) workbook).getSheetAt(0);
-            int rowStart = Math.max(1, sheet.getFirstRowNum());
+            int rowStart = Math.max(0, sheet.getFirstRowNum());
             int rowEnd = Math.max(100, sheet.getLastRowNum());
             int columnStart = 4;
             int columnEnd = 12;
@@ -26,7 +26,7 @@ public class readFromXML {
                     // Handle it as needed
                     break;
                 }
-                workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0, "","","","","","","" ));
+                workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0, 24, "","","","","","","" ));
 
                 int lastColumn = Math.max(columnEnd, columnStart);
                 for (int cn = columnStart + 1; cn < lastColumn; cn++) {

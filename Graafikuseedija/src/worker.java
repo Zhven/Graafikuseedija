@@ -2,6 +2,7 @@ public class worker {
     private String name;
     private int seniority;
     private int hours;
+    private int hours_since_shift;
     private String monday;
     private String tuesday;
     private String wednesday;
@@ -10,10 +11,11 @@ public class worker {
     private String saturday;
     private String sunday;
 
-    public worker(String name, int seniority, int hours, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday) {
+    public worker(String name, int seniority, int hours, int hours_since_shift, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday) {
         this.name = name;
         this.seniority = seniority;
         this.hours = hours;
+        this.hours_since_shift = hours_since_shift;
         this.monday = monday;
         this.tuesday = tuesday;
         this.wednesday = wednesday;
@@ -41,6 +43,14 @@ public class worker {
 
     public String getWednesday() {
         return wednesday;
+    }
+
+    public int getHours_since_shift() {
+        return hours_since_shift;
+    }
+
+    public void setHours_since_shift(int hours_since_shift) {
+        this.hours_since_shift = hours_since_shift;
     }
 
     public String getThursday() {
@@ -109,6 +119,7 @@ public class worker {
                 "name='" + name + '\'' +
                 ", seniority='" + seniority + '\'' +
                 ", hours='" + hours + '\'' +
+                ", hours_since_shift='" + hours_since_shift + '\'' +
                 ", monday='" + monday + '\'' +
                 ", tuesday='" + tuesday + '\'' +
                 ", wednesday='" + wednesday + '\'' +
