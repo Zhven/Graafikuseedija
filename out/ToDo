@@ -1,0 +1,14 @@
+- Lisada info selle kohta, kas kellelgi jäi 40 töötunnist puudu, et neid oleks võimalik hiljem manuaalselt kuskile juurde lisada vastavalt vajadusele
+- Loopida Parserit seni kuni kõik väljad täidetud. Mõnes olukorras jääb nädala lõpp täitmata, sest ei ole piisavalt sobivaid töötajaid, aga kui uuesti käivitada siis jagub kogu nädalaks sobivaid vahetusi.
+- User input: Kus on fail mida kasutada ja kuhu pärast fail sülitada (nt. by default samasse kausta, kust fail tuli)
+- Outputi formating
+- Projekti kirjelduse kirjutamine
+- kommenteerimine
+
+
+
+
+
+FOR PART II ELECTRIC BOGALOO
+Worker isendiväli üks list selle asemel, et iga päeva jaoks oma väli
+
