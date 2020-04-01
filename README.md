@@ -1,5 +1,5 @@
 # graafikuseedija
-Seedib graafikuid
+Võtab, sisse inimeste soovidega tabeli, ning paneb selle põhjal kokku vahetustega töögraafiku.
 
 Projektis kasutame laialdaselt Apache POI api-t, et tegeleda XML failidega. Oleme selle "external library" juurdepääsu saamiseks kasutanud Maven.
 Maven sai valitud, kuna üks meist oli sellega varem kokkupuutunud, enne kui praktikumites kasutati Gradle.
