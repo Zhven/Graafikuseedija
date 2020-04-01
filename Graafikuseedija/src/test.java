@@ -12,7 +12,7 @@ public class test {
 
          */
 
-        readFromXML.setFileName("Graafikuseedija/src/Testing testing(1-24).xlsx");
+        readFromXML.setFileName("Graafikuseedija/src/WS02-schedule-wishes-Jan-6th-12th_Sven.xlsx");
         writeToXML.setFileLocation("graafik.xlsx");
 
         writeToXML.writeInput(Parser.parse());
