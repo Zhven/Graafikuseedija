@@ -28,7 +28,7 @@ public class writeToXML {
         for (worker worker: Parser.workers){
             if (worker.getHours()<40){
                 if (total_names>0){
-                    under_40hours[total_names-1][0] = worker.getName().split(" ")[0];
+                    under_40hours[total_names-1][0] = worker.getName().split(" ")[0]+worker.getName().split(" ")[1].charAt(0);
                     under_40hours[total_names-1][1] = worker.getHours();
                 }
                 total_names++;

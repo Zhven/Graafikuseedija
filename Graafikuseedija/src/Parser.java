@@ -53,8 +53,8 @@ public class Parser {
                             }
                         }
                         StringBuilder shiftParticipants = new StringBuilder();
-                        for (worker value : shift) {
-                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -86,8 +86,8 @@ public class Parser {
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (worker value : shift) {
-                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -120,8 +120,8 @@ public class Parser {
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (worker value : shift) {
-                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -153,8 +153,8 @@ public class Parser {
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (worker value : shift) {
-                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -186,8 +186,8 @@ public class Parser {
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (worker value : shift) {
-                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -221,7 +221,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -254,7 +254,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -287,7 +287,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -321,7 +321,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -353,8 +353,8 @@ public class Parser {
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (worker value : shift) {
-                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -387,7 +387,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -421,7 +421,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -454,7 +454,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -487,7 +487,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -521,7 +521,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -554,7 +554,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -587,7 +587,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -621,7 +621,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -654,7 +654,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -687,7 +687,7 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -730,7 +730,7 @@ public class Parser {
             }
         }
         if (unfinished){
-            System.out.println("Didn't find a good distribution, the tabel is incomplete.");
+            System.out.println("Didn't find a good distribution, the table is incomplete.");
             System.out.println("Suggestions: Change the shift required workers, change the data or rerun the program.");
         }
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
