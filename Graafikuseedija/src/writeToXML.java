@@ -1,4 +1,4 @@
-import java.awt.print.Book;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -12,14 +12,7 @@ public class writeToXML {
     public static void writeInput(Object[][] bookData) throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Graafik");
-        /*
-        Object[][] bookData = {
-                {"Head First Java", "Kathy Serria", 79},
-                {"Effective Java", "Joshua Bloch", 36},
-                {"Clean Code", "Robert martin", 42},
-                {"Thinking in Java", "Bruce Eckel", 35},
-        };
-         */
+
 
         int rowCount = 0;
 
@@ -39,7 +32,10 @@ public class writeToXML {
 
         }
 
-        sheet.autoSizeColumn(10000);
+        for (int i = 1; i < 8; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
         try (FileOutputStream outputStream = new FileOutputStream("graafik.xlsx")) {
             workbook.write(outputStream);
         }

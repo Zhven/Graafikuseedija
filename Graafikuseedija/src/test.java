@@ -5,7 +5,10 @@ public class test {
         Object[][] s = Parser.parse();
         for (int i = 0; i < s.length; i++) {
             for (int j = 0; j < s[0].length; j++) {
-                System.out.println(s[i][j]);
+                if (i>0){
+                    System.out.println(s[i][j]);
+                }
+
             }
         }
         writeToXML.writeInput(s);

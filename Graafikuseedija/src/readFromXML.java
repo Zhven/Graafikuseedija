@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.util.*;
 
 public class readFromXML {
-    private static final String FILE_NAME = "Graafikuseedija/src/Testing testing(1-24).xlsx";
+    private static final String FILE_NAME = "Graafikuseedija/src/WS02-schedule-wishes-Jan-6th-12th_Sven.xlsx";
 
     public static List<worker> readInput(){
         List<worker> workers = new ArrayList<worker>();
