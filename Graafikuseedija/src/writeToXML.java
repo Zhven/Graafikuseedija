@@ -1,3 +1,4 @@
+import java.awt.print.Book;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -6,24 +7,19 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- * A very simple program that writes some data to an Excel file
- * using the Apache POI library.
- * @author www.codejava.net
- *
- */
 public class writeToXML {
 
-    public static void main(String[] args) throws IOException {
+    public static void writeInput(Object[][] bookData) throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Java Books");
-
+        XSSFSheet sheet = workbook.createSheet("Graafik");
+        /*
         Object[][] bookData = {
                 {"Head First Java", "Kathy Serria", 79},
                 {"Effective Java", "Joshua Bloch", 36},
                 {"Clean Code", "Robert martin", 42},
                 {"Thinking in Java", "Bruce Eckel", 35},
         };
+         */
 
         int rowCount = 0;
 
@@ -43,8 +39,8 @@ public class writeToXML {
 
         }
 
-
-        try (FileOutputStream outputStream = new FileOutputStream("WS.xlsx")) {
+        sheet.autoSizeColumn(10000);
+        try (FileOutputStream outputStream = new FileOutputStream("graafik.xlsx")) {
             workbook.write(outputStream);
         }
     }

@@ -6,7 +6,7 @@ public class Parser {
 
     public static Object[][] parse() {
         List<worker> workers = readFromXML.readInput();
-        String[][] output = {
+        Object[][] output = {
                 {"Monday morning", "Monday evening", "Monday night"},
                 {"Tuesday morning", "Tuesday evening", "Tuesday night"},
                 {"Wednesday morning", "Wednesday evening", "Wednesday night"},
@@ -15,13 +15,10 @@ public class Parser {
                 {"Saturday morning", "Saturday evening", "Saturday night"},
                 {"Sunday morning", "Sunday evening", "Sunday night"},
         };
-
         int id = 0;
         //iterating through output object to assign workers to shifts
         for (int i = 0; i < output.length; i++) {
             for (int j = 0; j < output[i].length; j++) {
-                System.out.println(output[i][j]);
-
                 List<worker> shift = new ArrayList<>();
                 switch (id) {
                     case 0:
@@ -32,7 +29,7 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getMonday() == ""
+                            if ((workers.get(randint).getMonday().equals("")
                                     || !workers.get(randint).getMonday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -42,14 +39,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker value : workers) {
+                            if (!shift.contains(value)) {
+                                value.setHours_since_shift(value.getHours_since_shift() + 8);
                             }
                         }
                         StringBuilder shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker value : shift) {
+                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
 
@@ -61,7 +58,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getMonday() == ""
+                            if ((workers.get(randint).getMonday().equals("")
                                     || !workers.get(randint).getMonday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -71,14 +68,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker value : workers) {
+                            if (!shift.contains(value)) {
+                                value.setHours_since_shift(value.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker value : shift) {
+                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -90,7 +87,7 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getMonday() == ""
+                            if ((workers.get(randint).getMonday().equals("")
                                     || !workers.get(randint).getMonday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -100,14 +97,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(-8);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker value : workers) {
+                            if (!shift.contains(value)) {
+                                value.setHours_since_shift(value.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker value : shift) {
+                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -118,7 +115,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getTuesday() == ""
+                            if ((workers.get(randint).getTuesday().equals("")
                                     || !workers.get(randint).getTuesday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -128,14 +125,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker value : workers) {
+                            if (!shift.contains(value)) {
+                                value.setHours_since_shift(value.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker value : shift) {
+                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -146,7 +143,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getTuesday() == ""
+                            if ((workers.get(randint).getTuesday().equals("")
                                     || !workers.get(randint).getTuesday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -156,14 +153,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker value : workers) {
+                            if (!shift.contains(value)) {
+                                value.setHours_since_shift(value.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker value : shift) {
+                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -175,7 +172,7 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getTuesday() == ""
+                            if ((workers.get(randint).getTuesday().equals("")
                                     || !workers.get(randint).getTuesday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -185,14 +182,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(-8);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -203,7 +200,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getWednesday() == ""
+                            if ((workers.get(randint).getWednesday().equals("")
                                     || !workers.get(randint).getWednesday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -213,14 +210,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -231,7 +228,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getWednesday() == ""
+                            if ((workers.get(randint).getWednesday().equals("")
                                     || !workers.get(randint).getWednesday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -241,14 +238,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -260,7 +257,7 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getWednesday() == ""
+                            if ((workers.get(randint).getWednesday().equals("")
                                     || !workers.get(randint).getWednesday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -270,14 +267,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(-8);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -288,7 +285,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getThursday() == ""
+                            if ((workers.get(randint).getThursday().equals("")
                                     || !workers.get(randint).getThursday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -298,14 +295,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker value : shift) {
+                            shiftParticipants.append(value.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -316,7 +313,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getThursday() == ""
+                            if ((workers.get(randint).getThursday().equals("")
                                     || !workers.get(randint).getThursday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -326,14 +323,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -345,7 +342,7 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getThursday() == ""
+                            if ((workers.get(randint).getThursday().equals("")
                                     || !workers.get(randint).getThursday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -355,14 +352,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(-8);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -373,7 +370,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getFriday() == ""
+                            if ((workers.get(randint).getFriday().equals("")
                                     || !workers.get(randint).getFriday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -383,14 +380,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -401,7 +398,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getFriday() == ""
+                            if ((workers.get(randint).getFriday().equals("")
                                     || !workers.get(randint).getFriday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -411,14 +408,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -430,7 +427,7 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getFriday() == ""
+                            if ((workers.get(randint).getFriday().equals("")
                                     || !workers.get(randint).getFriday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -440,14 +437,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(-8);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -458,7 +455,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getSaturday() == ""
+                            if ((workers.get(randint).getSaturday().equals("")
                                     || !workers.get(randint).getSaturday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -468,14 +465,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -486,7 +483,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getSaturday() == ""
+                            if ((workers.get(randint).getSaturday().equals("")
                                     || !workers.get(randint).getSaturday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -496,14 +493,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -515,7 +512,7 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getSaturday() == ""
+                            if ((workers.get(randint).getSaturday().equals("")
                                     || !workers.get(randint).getSaturday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -525,14 +522,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(-8);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -543,7 +540,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getSunday() == ""
+                            if ((workers.get(randint).getSunday().equals("")
                                     || !workers.get(randint).getSunday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -553,14 +550,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -571,7 +568,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getSunday() == ""
+                            if ((workers.get(randint).getSunday().equals("")
                                     || !workers.get(randint).getSunday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -581,14 +578,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
@@ -600,7 +597,7 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getSunday() == ""
+                            if ((workers.get(randint).getSunday().equals("")
                                     || !workers.get(randint).getSunday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
@@ -610,14 +607,14 @@ public class Parser {
                                 workers.get(randint).setHours_since_shift(-8);
                             }
                         }
-                        for (int k = 0; k < workers.size(); k++) {
-                            if (!shift.contains(workers.get(k))) {
-                                workers.get(k).setHours_since_shift(workers.get(k).getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         shiftParticipants = new StringBuilder();
-                        for (int k = 0; k < shift.size(); k++) {
-                            shiftParticipants.append(shift.get(k).getName().split(" ")[0] + "/");
+                        for (worker worker : shift) {
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
 
@@ -626,6 +623,19 @@ public class Parser {
                 id++;
             }
         }
-        return output;
+        String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        Object[][] week_shift = new Object[4][7];
+        for (int i = 0; i < week_shift.length; i++) {
+            for (int j = 0; j < week_shift[0].length; j++) {
+                if (i == 0){
+                    week_shift[i][j] = days[j];
+                }
+                else{
+                    week_shift[i][j] = output[j][i-1];
+                }
+
+            }
+        }
+        return week_shift;
     }
 }
