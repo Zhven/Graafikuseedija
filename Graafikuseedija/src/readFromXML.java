@@ -26,10 +26,12 @@ public class readFromXML {
             for (int rowNum = rowStart; rowNum < rowEnd; rowNum++) {
                 Row r = sheet.getRow(rowNum);
                 if (r == null) {
-                    // This whole row is empty
+                    // This whole row is empty or includes SM
                     // Handle it as needed
                     break;
                 }
+
+
                 workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0, 24, "","","","","","","" ));
 
                 int lastColumn = Math.max(columnEnd, columnStart);
@@ -38,8 +40,35 @@ public class readFromXML {
                     if (c == null) {
                         // The spreadsheet is empty in this cell
 
+                    } else if (c.getStringCellValue().contains("SM")) {
+                        // The worker is in SM position
+                        workers.get(id).setSeniority(9);
+                        // Add the free shift requests of SM position workers
+                        switch (cn) {
+                            case 5:
+                                workers.get(id).setMonday(c.getStringCellValue());
+                                break;
+                            case 6:
+                                workers.get(id).setTuesday(c.getStringCellValue());
+                                break;
+                            case 7:
+                                workers.get(id).setWednesday(c.getStringCellValue());
+                                break;
+                            case 8:
+                                workers.get(id).setThursday(c.getStringCellValue());
+                                break;
+                            case 9:
+                                workers.get(id).setFriday(c.getStringCellValue());
+                                break;
+                            case 10:
+                                workers.get(id).setSaturday(c.getStringCellValue());
+                                break;
+                            case 11:
+                                workers.get(id).setSunday(c.getStringCellValue());
+                                break;
+                        }
                     } else {
-                        // Do something useful with the cell's contents
+                        // Add the free shift requests for each day
                         switch (cn){
                             case 5:
                                 workers.get(id).setMonday(c.getStringCellValue());

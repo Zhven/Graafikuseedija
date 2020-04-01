@@ -18,6 +18,7 @@ public class Parser {
         int id = 0;
 
         //iterating through output object to assign workers to shifts
+
         for (int i = 0; i < output.length; i++) {
             for (int j = 0; j < output[i].length; j++) {
                 List<worker> shift = new ArrayList<>();
@@ -34,7 +35,8 @@ public class Parser {
                                     || !workers.get(randint).getMonday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -50,7 +52,6 @@ public class Parser {
                             shiftParticipants.append(value.getName().split(" ")[0]).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
-
                         break;
                     case 1:
                         int shiftRequiredSize2 = 6;
@@ -63,7 +64,8 @@ public class Parser {
                                     || !workers.get(randint).getMonday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -92,7 +94,8 @@ public class Parser {
                                     || !workers.get(randint).getMonday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(-8);
@@ -120,7 +123,8 @@ public class Parser {
                                     || !workers.get(randint).getTuesday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -148,7 +152,8 @@ public class Parser {
                                     || !workers.get(randint).getTuesday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -175,6 +180,7 @@ public class Parser {
 
                             if ((workers.get(randint).getTuesday().equals("")
                                     || !workers.get(randint).getTuesday().contains("23-07;"))
+                                    && workers.get(randint).getSeniority() != 9
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
@@ -205,7 +211,8 @@ public class Parser {
                                     || !workers.get(randint).getWednesday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -233,7 +240,8 @@ public class Parser {
                                     || !workers.get(randint).getWednesday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -262,7 +270,8 @@ public class Parser {
                                     || !workers.get(randint).getWednesday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(-8);
@@ -290,7 +299,8 @@ public class Parser {
                                     || !workers.get(randint).getThursday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -318,7 +328,8 @@ public class Parser {
                                     || !workers.get(randint).getThursday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -347,7 +358,8 @@ public class Parser {
                                     || !workers.get(randint).getThursday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(-8);
@@ -375,7 +387,8 @@ public class Parser {
                                     || !workers.get(randint).getFriday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -403,7 +416,8 @@ public class Parser {
                                     || !workers.get(randint).getFriday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -432,7 +446,8 @@ public class Parser {
                                     || !workers.get(randint).getFriday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(-8);
@@ -460,7 +475,8 @@ public class Parser {
                                     || !workers.get(randint).getSaturday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -488,7 +504,8 @@ public class Parser {
                                     || !workers.get(randint).getSaturday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -517,7 +534,8 @@ public class Parser {
                                     || !workers.get(randint).getSaturday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(-8);
@@ -545,7 +563,8 @@ public class Parser {
                                     || !workers.get(randint).getSunday().contains("07-15;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -573,7 +592,8 @@ public class Parser {
                                     || !workers.get(randint).getSunday().contains("15-23;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -602,7 +622,8 @@ public class Parser {
                                     || !workers.get(randint).getSunday().contains("23-07;"))
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                                    && workers.get(randint).getHours_since_shift() > 12
+                                    && workers.get(randint).getSeniority() != 9) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(-8);
@@ -615,10 +636,9 @@ public class Parser {
                         }
                         shiftParticipants = new StringBuilder();
                         for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append("/");
+                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
                         }
                         output[i][j] = shiftParticipants.toString();
-
                         break;
                 }
                 id++;
