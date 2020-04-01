@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Parser {
-
+    public static List<worker> workers = readFromXML.readInput();
     public static Object[][] parse() {
-        List<worker> workers = readFromXML.readInput();
+
         Object[][] output = {
                 {"Monday morning", "Monday evening", "Monday night"},
                 {"Tuesday morning", "Tuesday evening", "Tuesday night"},
@@ -16,10 +16,10 @@ public class Parser {
                 {"Sunday morning", "Sunday evening", "Sunday night"},
         };
         int id = 0;
-
+        boolean unfinished = false;
         //iterating through output object to assign workers to shifts
-        //this is a change
 
+        long startTime = System.currentTimeMillis();
         for (int i = 0; i < output.length; i++) {
             for (int j = 0; j < output[i].length; j++) {
                 List<worker> shift = new ArrayList<>();
@@ -27,6 +27,10 @@ public class Parser {
                     case 0:
                         int shiftRequiredSize = 6;
                         while (shift.size() < shiftRequiredSize) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -57,6 +61,10 @@ public class Parser {
                     case 1:
                         int shiftRequiredSize2 = 6;
                         while (shift.size() < shiftRequiredSize2) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -86,6 +94,10 @@ public class Parser {
                     case 2:
                         int shiftRequiredSize3 = 3;
                         while (shift.size() < shiftRequiredSize3) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -116,6 +128,10 @@ public class Parser {
                     case 3:
                         int shiftRequiredSize4 = 6;
                         while (shift.size() < shiftRequiredSize4) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -145,6 +161,10 @@ public class Parser {
                     case 4:
                         int shiftRequiredSize5 = 6;
                         while (shift.size() < shiftRequiredSize5) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -174,6 +194,10 @@ public class Parser {
                     case 5:
                         int shiftRequiredSize6 = 3;
                         while (shift.size() < shiftRequiredSize6) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -204,6 +228,10 @@ public class Parser {
                     case 6:
                         int shiftRequiredSize7 = 6;
                         while (shift.size() < shiftRequiredSize7) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -233,6 +261,10 @@ public class Parser {
                     case 7:
                         int shiftRequiredSize8 = 6;
                         while (shift.size() < shiftRequiredSize8) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -262,6 +294,10 @@ public class Parser {
                     case 8:
                         int shiftRequiredSize9 = 3;
                         while (shift.size() < shiftRequiredSize9) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -292,6 +328,10 @@ public class Parser {
                     case 9:
                         int shiftRequiredSize10 = 6;
                         while (shift.size() < shiftRequiredSize10) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -321,6 +361,10 @@ public class Parser {
                     case 10:
                         int shiftRequiredSize11 = 6;
                         while (shift.size() < shiftRequiredSize11) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -350,6 +394,10 @@ public class Parser {
                     case 11:
                         int shiftRequiredSize12 = 3;
                         while (shift.size() < shiftRequiredSize12) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -380,6 +428,10 @@ public class Parser {
                     case 12:
                         int shiftRequiredSize13 = 6;
                         while (shift.size() < shiftRequiredSize13) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -409,6 +461,10 @@ public class Parser {
                     case 13:
                         int shiftRequiredSize14 = 6;
                         while (shift.size() < shiftRequiredSize14) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -438,6 +494,10 @@ public class Parser {
                     case 14:
                         int shiftRequiredSize15 = 3;
                         while (shift.size() < shiftRequiredSize15) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -468,6 +528,10 @@ public class Parser {
                     case 15:
                         int shiftRequiredSize16 = 6;
                         while (shift.size() < shiftRequiredSize16) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -497,6 +561,10 @@ public class Parser {
                     case 16:
                         int shiftRequiredSize17 = 6;
                         while (shift.size() < shiftRequiredSize17) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -526,6 +594,10 @@ public class Parser {
                     case 17:
                         int shiftRequiredSize18 = 3;
                         while (shift.size() < shiftRequiredSize18) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -556,6 +628,10 @@ public class Parser {
                     case 18:
                         int shiftRequiredSize19 = 6;
                         while (shift.size() < shiftRequiredSize19) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -585,6 +661,10 @@ public class Parser {
                     case 19:
                         int shiftRequiredSize20 = 6;
                         while (shift.size() < shiftRequiredSize20) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -614,6 +694,10 @@ public class Parser {
                     case 20:
                         int shiftRequiredSize21 = 3;
                         while (shift.size() < shiftRequiredSize21) {
+                            if (System.currentTimeMillis()-startTime > 5000){
+                                unfinished = true;
+                                break;
+                            }
                             //generating randint
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
@@ -645,6 +729,10 @@ public class Parser {
                 id++;
             }
         }
+        if (unfinished){
+            System.out.println("Didn't find a good distribution, the tabel is incomplete.");
+            System.out.println("Suggestions: Change the shift required workers, change the data or rerun the program.");
+        }
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
         Object[][] week_shift = new Object[4][7];
         for (int i = 0; i < week_shift.length; i++) {
@@ -655,7 +743,6 @@ public class Parser {
                 else{
                     week_shift[i][j] = output[j][i-1];
                 }
-
             }
         }
         return week_shift;
