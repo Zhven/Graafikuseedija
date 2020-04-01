@@ -1,6 +1,5 @@
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
@@ -13,11 +12,11 @@ public class readFromXML {
     }
 
     public static List<worker> readInput(){
-        List<worker> workers = new ArrayList<worker>();
+        List<worker> workers = new ArrayList<>();
         try {
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
-            Workbook workbook = new XSSFWorkbook(excelFile);
-            Sheet sheet = ((XSSFWorkbook) workbook).getSheetAt(0);
+            XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
+            Sheet sheet = workbook.getSheetAt(0);
             int rowStart = Math.max(0, sheet.getFirstRowNum());
             int rowEnd = Math.max(100, sheet.getLastRowNum());
             int columnStart = 4;
@@ -31,66 +30,32 @@ public class readFromXML {
                     break;
                 }
 
+                if (!r.getCell(columnStart).getStringCellValue().equals("")){
+                    workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0, 24, new String[7]));
+                }
 
-                workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0, 24, "","","","","","","" ));
-
+                int day = 0;
                 int lastColumn = Math.max(columnEnd, columnStart);
                 for (int cn = columnStart + 1; cn < lastColumn; cn++) {
                     Cell c = r.getCell(cn, Row.RETURN_BLANK_AS_NULL);
                     if (c == null) {
                         // The spreadsheet is empty in this cell
 
-                    } else if (c.getStringCellValue().contains("SM")) {
+                    }
+                    else if (c.getStringCellValue().contains("SM")) {
                         // The worker is in SM position
                         workers.get(id).setSeniority(9);
                         // Add the free shift requests of SM position workers
-                        switch (cn) {
-                            case 5:
-                                workers.get(id).setMonday(c.getStringCellValue());
-                                break;
-                            case 6:
-                                workers.get(id).setTuesday(c.getStringCellValue());
-                                break;
-                            case 7:
-                                workers.get(id).setWednesday(c.getStringCellValue());
-                                break;
-                            case 8:
-                                workers.get(id).setThursday(c.getStringCellValue());
-                                break;
-                            case 9:
-                                workers.get(id).setFriday(c.getStringCellValue());
-                                break;
-                            case 10:
-                                workers.get(id).setSaturday(c.getStringCellValue());
-                                break;
-                            case 11:
-                                workers.get(id).setSunday(c.getStringCellValue());
-                                break;
+                        if (cn>4){
+                            workers.get(id).setDays(day, c.getStringCellValue());
+                            day++;
                         }
-                    } else {
-                        // Add the free shift requests for each day
-                        switch (cn){
-                            case 5:
-                                workers.get(id).setMonday(c.getStringCellValue());
-                                break;
-                            case 6:
-                                workers.get(id).setTuesday(c.getStringCellValue());
-                                break;
-                            case 7:
-                                workers.get(id).setWednesday(c.getStringCellValue());
-                                break;
-                            case 8:
-                                workers.get(id).setThursday(c.getStringCellValue());
-                                break;
-                            case 9:
-                                workers.get(id).setFriday(c.getStringCellValue());
-                                break;
-                            case 10:
-                                workers.get(id).setSaturday(c.getStringCellValue());
-                                break;
-                            case 11:
-                                workers.get(id).setSunday(c.getStringCellValue());
-                                break;
+                    }
+
+                    else {
+                        if (cn>4){
+                            workers.get(id).setDays(day, c.getStringCellValue());
+                            day++;
                         }
                     }
                 }

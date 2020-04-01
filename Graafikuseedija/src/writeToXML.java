@@ -14,15 +14,36 @@ public class writeToXML {
         FILE_LOCATION = fileLocation;
     }
 
+    public static void inputIntoSheet(Object[][] data, XSSFSheet sheet, int rowCount){
+
+
+        for (Object[] aBook : data) {
+            Row row = sheet.createRow(++rowCount);
+
+            int columnCount = 0;
+
+            for (Object field : aBook) {
+                Cell cell = row.createCell(++columnCount);
+                if (field instanceof String) {
+                    cell.setCellValue((String) field);
+                } else if (field instanceof Integer) {
+                    cell.setCellValue((Integer) field);
+                }
+            }
+        }
+
+    }
+
     public static void writeInput(Object[][] bookData) throws IOException {
 
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Shift");
-        XSSFSheet sheet2 = workbook.createSheet("People with under 40 hours");
+
+
 
         int total_names = 0;
-        Object[][] under_40hours = new Object[25][2];
+        Object[][] under_40hours = new Object[50][2];
 
 
         for (worker worker: Parser.workers){
@@ -36,38 +57,9 @@ public class writeToXML {
 
         }
 
-        int rowCount = 0;
+        inputIntoSheet(bookData, sheet, 0);
+        inputIntoSheet(under_40hours, sheet, 5);
 
-        for (Object[] aBook : bookData) {
-            Row row = sheet.createRow(++rowCount);
-
-            int columnCount = 0;
-
-            for (Object field : aBook) {
-                Cell cell = row.createCell(++columnCount);
-                if (field instanceof String) {
-                    cell.setCellValue((String) field);
-                } else if (field instanceof Integer) {
-                    cell.setCellValue((Integer) field);
-                }
-            }
-        }
-        rowCount ++;
-
-        for (Object[] aBook : under_40hours) {
-            Row row = sheet.createRow(++rowCount);
-
-            int columnCount = 0;
-
-            for (Object field : aBook) {
-                Cell cell = row.createCell(++columnCount);
-                if (field instanceof String) {
-                    cell.setCellValue((String) field);
-                } else if (field instanceof Integer) {
-                    cell.setCellValue((Integer) field);
-                }
-            }
-        }
 
         for (int i = 1; i < 8; i++) {
             sheet.autoSizeColumn(i);

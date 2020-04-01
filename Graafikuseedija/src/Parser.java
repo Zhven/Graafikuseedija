@@ -6,16 +6,7 @@ public class Parser {
     public static List<worker> workers = readFromXML.readInput();
     public static Object[][] parse() {
 
-        Object[][] output = {
-                {"Monday morning", "Monday evening", "Monday night"},
-                {"Tuesday morning", "Tuesday evening", "Tuesday night"},
-                {"Wednesday morning", "Wednesday evening", "Wednesday night"},
-                {"Thursday morning", "Thursday evening", "Thursday night"},
-                {"Friday morning", "Friday evening", "Friday night"},
-                {"Saturday morning", "Saturday evening", "Saturday night"},
-                {"Sunday morning", "Sunday evening", "Sunday night"},
-        };
-        int id = 0;
+        Object[][] output = new Object[7][3];
         boolean unfinished = false;
         //iterating through output object to assign workers to shifts
 
@@ -23,7 +14,7 @@ public class Parser {
         for (int i = 0; i < output.length; i++) {
             for (int j = 0; j < output[i].length; j++) {
                 List<worker> shift = new ArrayList<>();
-                switch (id) {
+                switch (j) {
                     case 0:
                         int shiftRequiredSize = 6;
                         while (shift.size() < shiftRequiredSize) {
@@ -36,20 +27,15 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getMonday().equals("")
-                                    || !workers.get(randint).getMonday().contains("07-15;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
+                            if (suitable_worker("7-15;", randint, i, shift)) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
                             }
                         }
-                        for (worker value : workers) {
-                            if (!shift.contains(value)) {
-                                value.setHours_since_shift(value.getHours_since_shift() + 8);
+                        for (worker worker : workers) {
+                            if (!shift.contains(worker)) {
+                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
                             }
                         }
                         StringBuilder shiftParticipants = new StringBuilder();
@@ -69,12 +55,7 @@ public class Parser {
                             Random r = new Random();
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getMonday().equals("")
-                                    || !workers.get(randint).getMonday().contains("15-23;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
+                            if (suitable_worker("15-23;", randint, i, shift)) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
@@ -103,112 +84,7 @@ public class Parser {
                             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
 
-                            if ((workers.get(randint).getMonday().equals("")
-                                    || !workers.get(randint).getMonday().contains("23-07;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(-8);
-                            }
-                        }
-                        for (worker value : workers) {
-                            if (!shift.contains(value)) {
-                                value.setHours_since_shift(value.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 3:
-                        int shiftRequiredSize4 = 6;
-                        while (shift.size() < shiftRequiredSize4) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getTuesday().equals("")
-                                    || !workers.get(randint).getTuesday().contains("07-15;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker value : workers) {
-                            if (!shift.contains(value)) {
-                                value.setHours_since_shift(value.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 4:
-                        int shiftRequiredSize5 = 6;
-                        while (shift.size() < shiftRequiredSize5) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getTuesday().equals("")
-                                    || !workers.get(randint).getTuesday().contains("15-23;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker value : workers) {
-                            if (!shift.contains(value)) {
-                                value.setHours_since_shift(value.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 5:
-                        int shiftRequiredSize6 = 3;
-                        while (shift.size() < shiftRequiredSize6) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-
-                            if ((workers.get(randint).getTuesday().equals("")
-                                    || !workers.get(randint).getTuesday().contains("23-07;"))
-                                    && workers.get(randint).getSeniority() != 9
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12) {
+                            if (suitable_worker("23-07;", randint, i, shift)) {
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(-8);
@@ -225,508 +101,8 @@ public class Parser {
                         }
                         output[i][j] = shiftParticipants.toString();
                         break;
-                    case 6:
-                        int shiftRequiredSize7 = 6;
-                        while (shift.size() < shiftRequiredSize7) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
 
-                            if ((workers.get(randint).getWednesday().equals("")
-                                    || !workers.get(randint).getWednesday().contains("07-15;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 7:
-                        int shiftRequiredSize8 = 6;
-                        while (shift.size() < shiftRequiredSize8) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getWednesday().equals("")
-                                    || !workers.get(randint).getWednesday().contains("15-23;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 8:
-                        int shiftRequiredSize9 = 3;
-                        while (shift.size() < shiftRequiredSize9) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-
-                            if ((workers.get(randint).getWednesday().equals("")
-                                    || !workers.get(randint).getWednesday().contains("23-07;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(-8);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 9:
-                        int shiftRequiredSize10 = 6;
-                        while (shift.size() < shiftRequiredSize10) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getThursday().equals("")
-                                    || !workers.get(randint).getThursday().contains("07-15;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 10:
-                        int shiftRequiredSize11 = 6;
-                        while (shift.size() < shiftRequiredSize11) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getThursday().equals("")
-                                    || !workers.get(randint).getThursday().contains("15-23;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 11:
-                        int shiftRequiredSize12 = 3;
-                        while (shift.size() < shiftRequiredSize12) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-
-                            if ((workers.get(randint).getThursday().equals("")
-                                    || !workers.get(randint).getThursday().contains("23-07;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(-8);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 12:
-                        int shiftRequiredSize13 = 6;
-                        while (shift.size() < shiftRequiredSize13) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getFriday().equals("")
-                                    || !workers.get(randint).getFriday().contains("07-15;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 13:
-                        int shiftRequiredSize14 = 6;
-                        while (shift.size() < shiftRequiredSize14) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getFriday().equals("")
-                                    || !workers.get(randint).getFriday().contains("15-23;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 14:
-                        int shiftRequiredSize15 = 3;
-                        while (shift.size() < shiftRequiredSize15) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-
-                            if ((workers.get(randint).getFriday().equals("")
-                                    || !workers.get(randint).getFriday().contains("23-07;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(-8);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 15:
-                        int shiftRequiredSize16 = 6;
-                        while (shift.size() < shiftRequiredSize16) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getSaturday().equals("")
-                                    || !workers.get(randint).getSaturday().contains("07-15;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 16:
-                        int shiftRequiredSize17 = 6;
-                        while (shift.size() < shiftRequiredSize17) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getSaturday().equals("")
-                                    || !workers.get(randint).getSaturday().contains("15-23;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 17:
-                        int shiftRequiredSize18 = 3;
-                        while (shift.size() < shiftRequiredSize18) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-
-                            if ((workers.get(randint).getSaturday().equals("")
-                                    || !workers.get(randint).getSaturday().contains("23-07;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(-8);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 18:
-                        int shiftRequiredSize19 = 6;
-                        while (shift.size() < shiftRequiredSize19) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getSunday().equals("")
-                                    || !workers.get(randint).getSunday().contains("07-15;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 19:
-                        int shiftRequiredSize20 = 6;
-                        while (shift.size() < shiftRequiredSize20) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-                            if ((workers.get(randint).getSunday().equals("")
-                                    || !workers.get(randint).getSunday().contains("15-23;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(0);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
-                    case 20:
-                        int shiftRequiredSize21 = 3;
-                        while (shift.size() < shiftRequiredSize21) {
-                            if (System.currentTimeMillis()-startTime > 5000){
-                                unfinished = true;
-                                break;
-                            }
-                            //generating randint
-                            Random r = new Random();
-                            int randint = r.nextInt((workers.size() - 2) + 1) + 1;
-
-
-                            if ((workers.get(randint).getSunday().equals("")
-                                    || !workers.get(randint).getSunday().contains("23-07;"))
-                                    && !shift.contains(workers.get(randint))
-                                    && workers.get(randint).getHours() != 40
-                                    && workers.get(randint).getHours_since_shift() > 12
-                                    && workers.get(randint).getSeniority() != 9) {
-                                shift.add(workers.get(randint));
-                                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                                workers.get(randint).setHours_since_shift(-8);
-                            }
-                        }
-                        for (worker worker : workers) {
-                            if (!shift.contains(worker)) {
-                                worker.setHours_since_shift(worker.getHours_since_shift() + 8);
-                            }
-                        }
-                        shiftParticipants = new StringBuilder();
-                        for (worker worker : shift) {
-                            shiftParticipants.append(worker.getName().split(" ")[0]).append(worker.getName().split(" ")[1].charAt(0)).append("/");
-                        }
-                        output[i][j] = shiftParticipants.toString();
-                        break;
                 }
-                id++;
             }
         }
         if (unfinished){
@@ -746,5 +122,14 @@ public class Parser {
             }
         }
         return week_shift;
+    }
+    public static boolean suitable_worker(String shift_time, int id, int day, List<worker> shift){
+        return (workers.get(id).getDay(day) == null
+                || !workers.get(id).getDay(day).contains(shift_time))
+                && !shift.contains(workers.get(id))
+                && workers.get(id).getHours() != 40
+                && workers.get(id).getHours_since_shift() > 12
+                && workers.get(id).getSeniority() != 9;
+
     }
 }
