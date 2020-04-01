@@ -35,6 +35,7 @@ public class Parser {
                                     && !shift.contains(workers.get(randint))
                                     && workers.get(randint).getHours() != 40
                                     && workers.get(randint).getHours_since_shift() > 12) {
+
                                 shift.add(workers.get(randint));
                                 workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                                 workers.get(randint).setHours_since_shift(0);
