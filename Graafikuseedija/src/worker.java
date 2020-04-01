@@ -1,3 +1,6 @@
+/*
+Nothing really to explain here, basically a class for holding the data that is associated with each employee.
+ */
 public class worker {
     private String name;
     private int seniority;

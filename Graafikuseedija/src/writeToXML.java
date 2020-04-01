@@ -1,4 +1,6 @@
-
+/*
+This class is about everything related to writing to the Excel sheet(XML/xslx file)
+ */
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -13,7 +15,7 @@ public class writeToXML {
     public static void setFileLocation(String fileLocation) {
         FILE_LOCATION = fileLocation;
     }
-
+    //A method for inputing into the given Excel sheet
     public static void inputIntoSheet(Object[][] data, XSSFSheet sheet, int rowCount){
 
 
@@ -33,7 +35,7 @@ public class writeToXML {
         }
 
     }
-
+    //The main method of the class, where everything comes together
     public static void writeInput(Object[][] bookData) throws IOException {
 
 

@@ -1,9 +1,13 @@
+/*
+This class is about everything related to the logic behind making the work shifts
+ */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Parser {
     public static List<worker> workers = readFromXML.readInput();
+    //Main method that brings everything together
     public static Object[][] parse() {
 
         Object[][] output = new Object[7][3];
@@ -123,6 +127,7 @@ public class Parser {
         }
         return week_shift;
     }
+    //A method for checking if the given worker(id) can actually work
     public static boolean suitable_worker(String shift_time, int id, int day, List<worker> shift){
         return (workers.get(id).getDay(day) == null
                 || !workers.get(id).getDay(day).contains(shift_time))

@@ -1,3 +1,6 @@
+/*
+Everything in this class is related to reading from the XML/xlsx file
+ */
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
@@ -10,7 +13,7 @@ public class readFromXML {
     public static void setFileName(String fileName) {
         FILE_NAME = fileName;
     }
-
+    //Main method that brings the class together.
     public static List<worker> readInput(){
         List<worker> workers = new ArrayList<>();
         try {
