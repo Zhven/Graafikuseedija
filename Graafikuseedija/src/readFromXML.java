@@ -6,7 +6,11 @@ import java.io.FileInputStream;
 import java.util.*;
 
 public class readFromXML {
-    private static final String FILE_NAME = "Graafikuseedija/src/WS02-schedule-wishes-Jan-6th-12th_Sven.xlsx";
+    public static String FILE_NAME;
+
+    public static void setFileName(String fileName) {
+        FILE_NAME = fileName;
+    }
 
     public static List<worker> readInput(){
         List<worker> workers = new ArrayList<worker>();
@@ -33,7 +37,6 @@ public class readFromXML {
                     Cell c = r.getCell(cn, Row.RETURN_BLANK_AS_NULL);
                     if (c == null) {
                         // The spreadsheet is empty in this cell
-                        //System.out.println("Empty cell");
 
                     } else {
                         // Do something useful with the cell's contents

@@ -16,6 +16,7 @@ public class Parser {
                 {"Sunday morning", "Sunday evening", "Sunday night"},
         };
         int id = 0;
+
         //iterating through output object to assign workers to shifts
         for (int i = 0; i < output.length; i++) {
             for (int j = 0; j < output[i].length; j++) {
