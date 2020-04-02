@@ -8,15 +8,15 @@ import java.io.FileInputStream;
 import java.util.*;
 
 public class readFromXML {
+    // Setting the file name
     public static String FILE_NAME;
-
     public static void setFileName(String fileName) {
         FILE_NAME = fileName;
     }
     //Main method that brings the class together.
     public static List<worker> readInput(){
-        List<worker> workers = new ArrayList<>();
-        try {
+        List<worker> workers = new ArrayList<>(); // Create a list for storing workers
+        try { // Open the file and start iterating through it starting from the given coordinates
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
             XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
             Sheet sheet = workbook.getSheetAt(0);
@@ -34,7 +34,7 @@ public class readFromXML {
                 }
 
                 if (!r.getCell(columnStart).getStringCellValue().equals("")){
-                    workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0, 24, new String[7]));
+                    workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0, 24, new String[7])); //create a worker with the name value
                 }
 
                 int day = 0;
@@ -45,7 +45,7 @@ public class readFromXML {
                         // The spreadsheet is empty in this cell
 
                     }
-                    else if (c.getStringCellValue().contains("SM")) {
+                    else if (c.getStringCellValue().contains("SM")) { //SM's free shifts follow a different logic, which was not in the scope of this project
                         // The worker is in SM position
                         workers.get(id).setSeniority(9);
                         // Add the free shift requests of SM position workers
@@ -57,7 +57,7 @@ public class readFromXML {
 
                     else {
                         if (cn>4){
-                            workers.get(id).setDays(day, c.getStringCellValue());
+                            workers.get(id).setDays(day, c.getStringCellValue()); // Set the free shift requests for each worker
                             day++;
                         }
                     }
@@ -65,8 +65,14 @@ public class readFromXML {
                 id++;
             }
         }catch (Exception e){
-            System.out.println("error");
+            System.out.println("An error occured while reading data from the file");
         }
+        /*
+        for (worker worker:workers) {
+            System.out.println(worker);
+
+        }
+         */
         return workers;
     }
 }

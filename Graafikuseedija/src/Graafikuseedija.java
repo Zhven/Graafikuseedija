@@ -1,19 +1,38 @@
+import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 public class Graafikuseedija {
     public static void main(String[] args) throws IOException {
-        /*
-        if (args.length == 0){
-            readFromXML.setFileName("Graafikuseedija/src/Testing testing(1-24).xlsx");
-        }
-        else{
-            readFromXML.setFileName(args[0]);
+        // Simplistic UI for choosing input file
+        // Create file chooser
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        // Open file chooser dialog
+        int returnValue = jfc.showOpenDialog(null);
+        // If a file is chosen
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            // Return the AbsolutePath of the selected file
+            File selectedFile = jfc.getSelectedFile();
+            readFromXML.setFileName(selectedFile.getAbsolutePath());
+
+            // Open file save dialog
+            int userSelection = jfc.showSaveDialog(null);
+            // If a save location is chosen
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                // Return the absolute path and continue with program
+                File fileToSave = jfc.getSelectedFile();
+                writeToXML.setFileLocation(fileToSave.getAbsolutePath());
+                writeToXML.writeInput(Parser.parse());
+            }
+
+        } else {
+            // If user cancels choosing a file then:
+            System.out.println("No file was chosen. Exiting program");
         }
 
-         */
-
-        readFromXML.setFileName("Graafikuseedija/src/WS02-schedule-wishes-Jan-6th-12th_Sven.xlsx");
+        //readFromXML.setFileName("Graafikuseedija/src/WS02-schedule-wishes-Jan-6th-12th_Sven.xlsx");
 
 
         /*
@@ -28,8 +47,7 @@ public class Graafikuseedija {
 
          */
 
-        writeToXML.setFileLocation("graafik.xlsx");
-        writeToXML.writeInput(Parser.parse());
+
 
     }
 }
