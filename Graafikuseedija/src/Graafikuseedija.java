@@ -6,8 +6,7 @@ import java.io.IOException;
 
 public class Graafikuseedija {
     public static void main(String selectedFile, String fileToSave) throws IOException {
-
-            ReadFromXSLX.setFileName(selectedFile);
+            ReadFromXLSX.setFileName(selectedFile);
             WriteToXLSX.setFileLocation(fileToSave);
             WriteToXLSX.writeInput(Parser.parse());
             }

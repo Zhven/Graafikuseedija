@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 
-public class ReadFromXSLX {
+public class ReadFromXLSX {
     // Setting the file name
     public static String FILE_NAME;
     public static void setFileName(String fileName) {
@@ -65,7 +65,7 @@ public class ReadFromXSLX {
                 id++;
             }
         }catch (Exception e){
-            System.out.println("An error occured while reading data from the file");
+            System.out.println("Error reading data from file");;
         }
         /*
         for (worker worker:workers) {

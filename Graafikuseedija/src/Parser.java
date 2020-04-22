@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Parser {
-    public static List<Worker> workers = ReadFromXSLX.readInput();
+    public static List<Worker> workers = ReadFromXLSX.readInput();
     //Main method that brings everything together
     public static Object[][] parse() {
         // Create a 2D object to hold the data
