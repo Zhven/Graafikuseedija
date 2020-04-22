@@ -2,7 +2,6 @@ import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class Graafikuseedija {
     public static void main(String[] args) throws IOException {
@@ -15,7 +14,7 @@ public class Graafikuseedija {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             // Return the AbsolutePath of the selected file
             File selectedFile = jfc.getSelectedFile();
-            readFromXML.setFileName(selectedFile.getAbsolutePath());
+            ReadFromXSLX.setFileName(selectedFile.getAbsolutePath());
 
             // Open file save dialog
             int userSelection = jfc.showSaveDialog(null);
@@ -23,8 +22,8 @@ public class Graafikuseedija {
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 // Return the absolute path and continue with program
                 File fileToSave = jfc.getSelectedFile();
-                writeToXML.setFileLocation(fileToSave.getAbsolutePath());
-                writeToXML.writeInput(Parser.parse());
+                WriteToXLSX.setFileLocation(fileToSave.getAbsolutePath());
+                WriteToXLSX.writeInput(Parser.parse());
             }
 
         } else {

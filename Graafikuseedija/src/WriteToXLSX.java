@@ -8,7 +8,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class writeToXML {
+public class WriteToXLSX {
     // A location used to write the new file to
     public static String FILE_LOCATION;
 
@@ -59,7 +59,7 @@ public class writeToXML {
         //Creating an object for the workers who have been assigned less than 40 hours
         int total_names = 0;
         Object[][] under_40hours = new Object[50][2];
-        for (worker worker: Parser.workers){
+        for (Worker worker: Parser.workers){
             if (worker.getHours()<40){
                 if (total_names>0){
                     under_40hours[total_names-1][0] = worker.getName().split(" ")[0]+worker.getName().split(" ")[1].charAt(0);

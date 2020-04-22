@@ -1,7 +1,7 @@
 /*
 Nothing really to explain here, basically a class for holding the data that is associated with each employee.
  */
-public class worker {
+public class Worker {
     private String name;
     private int seniority;
     private int hours;
@@ -9,7 +9,7 @@ public class worker {
     private String[] days;
 
 
-    public worker(String name, int seniority, int hours, int hours_since_shift, String[] days) {
+    public Worker(String name, int seniority, int hours, int hours_since_shift, String[] days) {
         this.name = name;
         this.seniority = seniority;
         this.hours = hours;
@@ -28,6 +28,7 @@ public class worker {
     public String getDay(int day) {
         return days[day];
     }
+
     public String[] getDays() {
         return days;
     }

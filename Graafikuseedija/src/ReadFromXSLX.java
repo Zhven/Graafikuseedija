@@ -7,15 +7,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 
-public class readFromXML {
+public class ReadFromXSLX {
     // Setting the file name
     public static String FILE_NAME;
     public static void setFileName(String fileName) {
         FILE_NAME = fileName;
     }
     //Main method that brings the class together.
-    public static List<worker> readInput(){
-        List<worker> workers = new ArrayList<>(); // Create a list for storing workers
+    public static List<Worker> readInput(){
+        List<Worker> workers = new ArrayList<>(); // Create a list for storing workers
         try { // Open the file and start iterating through it starting from the given coordinates
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
             XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
@@ -34,7 +34,7 @@ public class readFromXML {
                 }
 
                 if (!r.getCell(columnStart).getStringCellValue().equals("")){
-                    workers.add(new worker(r.getCell(columnStart).getStringCellValue(), 0, 0, 24, new String[7])); //create a worker with the name value
+                    workers.add(new Worker(r.getCell(columnStart).getStringCellValue(), 0, 0, 24, new String[7])); //create a worker with the name value
                 }
 
                 int day = 0;
