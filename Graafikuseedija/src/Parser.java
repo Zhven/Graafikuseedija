@@ -11,8 +11,11 @@ public class Parser {
 
     //Main method that brings everything together
     public static String[][] parse(String[][] output) {
-        // Create a 2D object to hold the data
-        // Object[][] output = new Object[7][3];
+        //Resetting the hours worked to 0 for all workers in case the program is ran more than once during the same startup
+        for (Worker worker : workers) {
+            worker.setHours_since_shift(24);
+            worker.setHours(0);
+        }
         boolean unfinished = false;
         //iterating through output object to assign workers to shifts
         long startTime = System.currentTimeMillis();
@@ -72,13 +75,18 @@ public class Parser {
             if (suitable_worker(shift_time, randint, i, shift)) {
                 // Adding the worker to the shift.
                 shift.add(workers.get(randint));
-                workers.get(randint).setHours(workers.get(randint).getHours() + 8);
-                // Checking if the current shift, is a night one, in that case giving the worker 8 more hours to rest
-                if (shiftRequiredSize == 3) {
+                // Checking if the current shift, is a night one
+                if (shift_time.equals("23-07;")) {
+                    // Setting hours since last shift to -8 so that they would have 8 + 8 hours of time to rest before next shift
                     workers.get(randint).setHours_since_shift(-8);
+                    // Adding the 16 hours that they have worked
+                    workers.get(randint).setHours(workers.get(randint).getHours() + 16);
                 }
                 else{
+                    // Setting hours since last shift to 0 so that they would have time to rest before next shift
                     workers.get(randint).setHours_since_shift(0);
+                    // Adding the 8 hours that they have worked
+                    workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                 }
 
             }

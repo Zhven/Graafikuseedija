@@ -13,8 +13,8 @@
 FOR PART II ELECTRIC BOGALOO
 - Worker isendiväli üks list selle asemel, et iga päeva jaoks oma väli DONE
 - Formating output NOPE
-- Creating a nice GUI ALMOST
-- võimalus valida vahetuses vajaliku töötajate arvu.
+- Creating a nice GUI. ALMOST
+- võimalus valida vahetuses vajaliku töötajate arvu. DONE
 - Kindlasti on vaja muuta programmi ülesehitus selliselt, et jaotusi genereeritakse rohkem kui üks kord juhul kui see ei õnnestu, et ei peaks iga uue jaotuse jaoks programmi uuesti käivitama.
-- Teavitada kasutajad kui fail, mis valiti ei sobi programmi tööks, alerdiga.
+- Teavitada kasutajat kui fail, mis valiti ei sobi programmi tööks, alerdiga. // Proovin lisada tekstiakna, mis näitab kasutajale failis leiduvad töötajad. kui töötajaid ei leita siis lihtsalt generic error vms.
 
