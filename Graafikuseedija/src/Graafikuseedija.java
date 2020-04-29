@@ -5,10 +5,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class Graafikuseedija {
-    public static void main(String selectedFile, String fileToSave) throws IOException {
+    public static void main(String selectedFile, String fileToSave, String[][] shiftSizes) throws IOException {
             ReadFromXLSX.setFileName(selectedFile);
             WriteToXLSX.setFileLocation(fileToSave);
-            WriteToXLSX.writeInput(Parser.parse());
+            WriteToXLSX.writeInput(Parser.parse(shiftSizes));
             }
 
 

@@ -2,15 +2,17 @@
 This class is about everything related to the logic behind making the work shifts
  */
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class Parser {
     public static List<Worker> workers = ReadFromXLSX.readInput();
+
     //Main method that brings everything together
-    public static Object[][] parse() {
+    public static String[][] parse(String[][] output) {
         // Create a 2D object to hold the data
-        Object[][] output = new Object[7][3];
+        // Object[][] output = new Object[7][3];
         boolean unfinished = false;
         //iterating through output object to assign workers to shifts
         long startTime = System.currentTimeMillis();
@@ -19,13 +21,13 @@ public class Parser {
                 List<Worker> shift = new ArrayList<>();
                 switch (j) {
                     case 0:
-                        get_shifty(shift, startTime, i, j, output, "07-15;", 6);
+                        get_shifty(shift, startTime, i, j, output, "07-15;", Integer.parseInt(output[i][j]));
                         break;
                     case 1:
-                        get_shifty(shift, startTime, i, j, output, "15-23;", 6);
+                        get_shifty(shift, startTime, i, j, output, "15-23;", Integer.parseInt(output[i][j]));
                         break;
                     case 2:
-                        get_shifty(shift, startTime, i, j, output, "23-07;", 3);
+                        get_shifty(shift, startTime, i, j, output, "23-07;", Integer.parseInt(output[i][j]));
                         break;
 
                 }
@@ -33,7 +35,7 @@ public class Parser {
         }
 
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}; // rotate the output by 90 degrees
-        Object[][] week_shift = new Object[4][7];
+        String[][] week_shift = new String[4][7];
         for (int i = 0; i < week_shift.length; i++) {
             for (int j = 0; j < week_shift[0].length; j++) {
                 if (i == 0){
