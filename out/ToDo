@@ -1,3 +1,14 @@
+FOR PART II ELECTRIC BOGALOO
+- Creating a nice GUI. Võiks veel dark mode teha kui viitsimist on. MenuBari abil saab muuta.
+- Teavitada kasutajat kui fail, mis valiti ei sobi programmi tööks, alerdiga. // Proovin lisada tekstiakna, mis näitab kasutajale failis leiduvad töötajad. kui töötajaid ei leita siis lihtsalt generic error vms.
+
+Done:
+- Worker isendiväli üks list selle asemel, et iga päeva jaoks oma väli DONE
+- võimalus valida vahetuses vajaliku töötajate arvu. DONE
+- Kindlasti on vaja muuta programmi ülesehitus selliselt, et jaotusi genereeritakse rohkem kui üks kord juhul kui see ei õnnestu, et ei peaks iga uue jaotuse jaoks programmi uuesti käivitama. DONE
+- Formating output NOPE
+
+Old done:
 - Loopida Parserit seni kuni kõik väljad täidetud. Mõnes olukorras jääb nädala lõpp täitmata, sest ei ole piisavalt sobivaid töötajaid, aga kui uuesti käivitada siis jagub kogu nädalaks sobivaid vahetusi.
     - Lahendatud hetkel selliselt, et programm annab tagasisidet kui graafikut ei ole täielikult täidetud.
 - User input: Kus on fail mida kasutada ja kuhu pärast fail sülitada (nt. by default samasse kausta, kust fail tuli) DONE
@@ -5,16 +16,3 @@
     - Workbook styling on Apache.Poi's oluliselt piiratum kui esialgu arvasime seega hetkel lükkub edasi teise faasi
 - Projekti kirjelduse kirjutamine
 - kommenteerimine DONE
-
-
-
-
-
-FOR PART II ELECTRIC BOGALOO
-- Worker isendiväli üks list selle asemel, et iga päeva jaoks oma väli DONE
-- Formating output NOPE
-- Creating a nice GUI. ALMOST
-- võimalus valida vahetuses vajaliku töötajate arvu. DONE
-- Kindlasti on vaja muuta programmi ülesehitus selliselt, et jaotusi genereeritakse rohkem kui üks kord juhul kui see ei õnnestu, et ei peaks iga uue jaotuse jaoks programmi uuesti käivitama.
-- Teavitada kasutajat kui fail, mis valiti ei sobi programmi tööks, alerdiga. // Proovin lisada tekstiakna, mis näitab kasutajale failis leiduvad töötajad. kui töötajaid ei leita siis lihtsalt generic error vms.
-
