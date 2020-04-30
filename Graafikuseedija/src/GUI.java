@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.*;
+import java.util.List;
 
 public class GUI extends Application {
     public static void main(String[] args) {
@@ -35,14 +37,19 @@ public class GUI extends Application {
         MenuItem quit = new MenuItem("Quit");
         Menu menuHelp = new Menu("Help");
         MenuItem about = new MenuItem("How-to");
+        MenuItem license = new MenuItem("License");
         about.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Label secondLabel = new Label("1. Insert the .csv file exported from the forms responses \n" +
-                        "2. Select the file name that the results will be saved as \n" +
-                        "3. Adjust the shift sizes \n" +
-                        "4. Click export \n" +
-                        "5. If no error show up you can open the file or open the file and close the program \n" +
+                Label secondLabel = new Label("1. Insert the .xlsx file exported from the forms responses \n" +
+                        "2. You can check if the file was read correctly by checking the 'Names found from XLSX' field \n" +
+                        "3. Select the file name that the results will be saved as \n" +
+                        "4. Adjust the shift sizes \n" +
+                        "5. Click export \n" +
+                        "6. If no error show up you can open the file or open the file and close the program \n" +
+                        "\n" +
+                        "The employees that are displayed underneath the graph do have 40h worth of shifts assigned to them. \n" +
+                        "The number show how many hours they currently have assigned \n" +
                         "\n" +
                         "If there are any errors with the schedule generation and the schedule file is not complete \n" +
                         "then the program probably did not find a suitable distribution of workers. As the program \n" +
@@ -53,7 +60,7 @@ public class GUI extends Application {
                 StackPane secondaryLayout = new StackPane();
                 secondaryLayout.getChildren().add(secondLabel);
 
-                Scene secondScene = new Scene(secondaryLayout, 500, 200);
+                Scene secondScene = new Scene(secondaryLayout, 550, 300);
 
                 // New window (Stage)
                 Stage newWindow = new Stage();
@@ -67,6 +74,32 @@ public class GUI extends Application {
                 newWindow.show();
             }
         }); // Create a label window to display instructions
+        license.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Label secondLabel = new Label("This program comes as is without any guarantees \n" +
+                        "\n" +
+                        "\n" +
+                        "Sven-Ervin Paap & Enri Täär \n" +
+                        "2020");
+
+                StackPane secondaryLayout = new StackPane();
+                secondaryLayout.getChildren().add(secondLabel);
+
+                Scene secondScene = new Scene(secondaryLayout, 500, 250);
+
+                // New window (Stage)
+                Stage newWindow = new Stage();
+                newWindow.setTitle("License");
+                newWindow.setScene(secondScene);
+
+                // Set position of second window, related to primary window.
+                newWindow.setX(primaryStage.getX() + 200);
+                newWindow.setY(primaryStage.getY() + 200);
+
+                newWindow.show();
+            }
+        }); // Create a label window to display "license"
         quit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -75,6 +108,7 @@ public class GUI extends Application {
         });
         menuFile.getItems().add(quit);
         menuHelp.getItems().add(about);
+        menuHelp.getItems().add(license);
 
         /* Adding all sub menus at ones to a MenuBar. */
         menu.getMenus().addAll(menuFile, menuHelp);
@@ -84,6 +118,11 @@ public class GUI extends Application {
         noFileSelectedAlert.setTitle("Error");
         noFileSelectedAlert.setHeaderText("Error code: 404. File not found");
         noFileSelectedAlert.setContentText("Please fill the input and output fields before continuing");
+        // Fatal error alert
+        Alert fatalErrorAlert = new Alert(Alert.AlertType.ERROR);
+        fatalErrorAlert.setTitle("Error");
+        fatalErrorAlert.setHeaderText("Fatal error. Program is unable to continue");
+        fatalErrorAlert.setContentText("Please restart the program and try again");
         // Alert for successfully generating the results
         Alert jobDoneAlert = new Alert(Alert.AlertType.INFORMATION);
         jobDoneAlert.setTitle("Success");
@@ -98,6 +137,10 @@ public class GUI extends Application {
         TextField fileInput = new TextField();
         fileInput.setMinWidth(450.0);
         TextField fileOutput = new TextField();
+        // Text area for displaying data found in the chosen file
+        TextArea inputFromFile = new TextArea();
+        inputFromFile.setMinWidth(75);
+        inputFromFile.setEditable(false);
         // Ability to choose shift sizes
         //Monday
         ComboBox<String> mondayMorning = new ComboBox<String>();
@@ -195,12 +238,27 @@ public class GUI extends Application {
         openFileBtn.setText("Browse");
         openFileBtn.setOnAction(new EventHandler<ActionEvent>()
         {
-            // Open file dialog for opening the CSV file
+            // Open file dialog for opening the XLSX file
             @Override
             public void handle(ActionEvent event) {
+                // Select the XLSX file
                 FileChooser fileChooser = new FileChooser();
+                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx)", "*.xlsx");
+                fileChooser.getExtensionFilters().add(extFilter);
                 File selectedFile = fileChooser.showOpenDialog(primaryStage);
                 fileInput.setText(selectedFile.getAbsolutePath());
+                // Display the workers found in the CSV file
+                inputFromFile.clear(); // clear any previous text
+                ReadFromXLSX.setFileName(selectedFile.getAbsolutePath());
+                //String[] workersFromFile = new String[20];
+                List<Worker> workersFromFile = ReadFromXLSX.readInput();
+                int i = 1;
+                for (Worker worker : workersFromFile) {
+                    if (!worker.getName().equals("Name")) {
+                        inputFromFile.appendText(i + ". " + worker.getName() + "\n");
+                        i++;
+                    }
+                }
 
             }
         });
@@ -263,7 +321,7 @@ public class GUI extends Application {
 
                 if (fileInput.getText().isEmpty() || fileOutput.getText().isEmpty()) {
                     //insert error message
-                    noFileSelectedAlert.showAndWait();
+                    fatalErrorAlert.showAndWait();
                 }
                 else {
                     try {
@@ -306,6 +364,8 @@ public class GUI extends Application {
                     } catch (Exception e) {
                         e.printStackTrace();
                         System.out.println("Error");
+                        fatalErrorAlert.showAndWait();
+                        Platform.exit();
                     }
                 }
             }
@@ -329,9 +389,12 @@ public class GUI extends Application {
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.getColumnConstraints().add(new ColumnConstraints(70));
         // Add all the elements to the grid
-        grid.add(new Label("CSV input: "), 0, 2);
+        grid.add(new Label("XLSX input: "), 0, 2);
         grid.add(fileInput, 1, 2, 8,1);
         grid.add(openFileBtn, 9,2);
+
+        grid.add(new Label("Names found from XLSX: "), 11, 2);
+        grid.add(inputFromFile, 11, 3, 1, 10);
 
         grid.add(new Label("Save to: "), 0, 4);
         grid.add(fileOutput, 1, 4, 8,1);
@@ -388,7 +451,7 @@ public class GUI extends Application {
         // Add menu to the scene
         root.setTop(menus);
         // Add scene to stage
-        primaryStage.setScene(new Scene(root, 800, 500));
+        primaryStage.setScene(new Scene(root, 900, 500));
         // Show stage
         primaryStage.show();
     }
