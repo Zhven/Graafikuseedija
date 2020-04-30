@@ -321,7 +321,7 @@ public class GUI extends Application {
 
                 if (fileInput.getText().isEmpty() || fileOutput.getText().isEmpty()) {
                     //insert error message
-                    fatalErrorAlert.showAndWait();
+                    noFileSelectedAlert.showAndWait();
                 }
                 else {
                     try {

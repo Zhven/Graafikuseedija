@@ -52,7 +52,9 @@ Klassid:
 
 *worker* - isendiklass, millega saame igale inimesele tekitada oma isendi.
 
-*Graafikuseedija* - Klass, kus toimub suhtlus kasutajaga ja käivitatakse ülejäänud programm
+*Graafikuseedija* - Klass, kust käivitatakse ülejäänud programm
+
+*GUI* - Projekti teises faasis lisatud klass, kus toimub kogu suhtlus kasutajaga ja Graafikuseedija abil ülejäänud programmi käivitamine.
 
 Mured: 
 - Algselt oli veidi keerukas APACHE POI api-ga tegeleda, kuid lõpuks hakkas töö sujuvalt liikuma.
@@ -63,8 +65,8 @@ Projekti tegemise protsessid ning panused - Kõik projektis olev töö, sai teht
 
 Hinnang:
 
- - Hetkel töötab programm selliselt, et reaalselt saab seda juba kasutada, aga soovime siiski ületada meile "kliendi" poolt seatud nõudeid. Plaanis on lisada erinevaid mugavusfunktsioone. Nt võimalus valida vahetuses vajaliku töötajate arvu.
- - Kindlasti on vaja muuta programmi ülesehitus selliselt, et jaotusi genereeritakse rohkem kui üks kord juhul kui see ei õnnestu, et ei peaks iga uue jaotuse jaoks programmi uuesti käivitama.
+ - Programm töötab ja ületab kõiki meile seatud eesmärke.
+ - Sisse on viidud kõik erinevad uuendused ja parandused, mis projekti esimeses osas ilmnesid
  
  Selgitus:
  
