@@ -58,6 +58,7 @@ public class Parser {
                 && !shift.contains(workers.get(id)) // worker is not already in the shift
                 && workers.get(id).getHours() != 40 // worker has not worked 40 hours already
                 && workers.get(id).getHours_since_shift() > 12 // time passed from latest shift is more than
+                && !workers.get(id).isNightShift() // worker has not been assigned a nightShift
                 && workers.get(id).getSeniority() != 9; // worker does not have the seniority 9 (shift manager) assigned to them
 
     }
@@ -81,6 +82,8 @@ public class Parser {
                     workers.get(randint).setHours_since_shift(-8);
                     // Adding the 16 hours that they have worked
                     workers.get(randint).setHours(workers.get(randint).getHours() + 16);
+                    // Editing the nightShift flag to avoid assigning multiple nightshifts
+                    workers.get(randint).setNightShift(true);
                 }
                 else{
                     // Setting hours since last shift to 0 so that they would have time to rest before next shift

@@ -7,6 +7,7 @@ public class Worker {
     private int hours;
     private int hours_since_shift;
     private String[] days;
+    private boolean nightShift;
 
 
     public Worker(String name, int seniority, int hours, int hours_since_shift, String[] days) {
@@ -15,6 +16,7 @@ public class Worker {
         this.hours = hours;
         this.hours_since_shift = hours_since_shift;
         this.days = days;
+        this.nightShift = false;
 
     }
     public void setDays(int day, String data) {
@@ -59,6 +61,14 @@ public class Worker {
 
     public void setHours(int hours) {
         this.hours = hours;
+    }
+
+    public boolean isNightShift() {
+        return nightShift;
+    }
+
+    public void setNightShift(boolean nightShift) {
+        this.nightShift = nightShift;
     }
 
     @Override
