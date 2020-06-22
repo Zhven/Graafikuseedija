@@ -15,6 +15,7 @@ public class Parser {
         for (Worker worker : workers) {
             worker.setHours_since_shift(24);
             worker.setHours(0);
+            worker.setNightShift(false);
         }
         boolean unfinished = false;
         //iterating through output object to assign workers to shifts
@@ -59,11 +60,24 @@ public class Parser {
                 && workers.get(id).getHours() != 40 // worker has not worked 40 hours already
                 && workers.get(id).getHours_since_shift() > 12 // time passed from latest shift is more than
                 && !workers.get(id).isNightShift() // worker has not been assigned a nightShift
-                && workers.get(id).getSeniority() != 9; // worker does not have the seniority 9 (shift manager) assigned to them
+                && !workers.get(id).getSeniority().equals("SM"); // worker does not have the seniority 9 (shift manager) assigned to them
+
+    }
+    public static boolean suitable_SL(String shift_time, int id, int day, List<Worker> shift){
+        System.out.println("Testing worker" + id);
+        return (workers.get(id).getDay(day) == null // worker has not requested the day off
+                || !workers.get(id).getDay(day).contains(shift_time)) // worker has not requested the shift off
+                && !shift.contains(workers.get(id)) // worker is not already in the shift
+                && workers.get(id).getHours() != 40 // worker has not worked 40 hours already
+                && workers.get(id).getHours_since_shift() > 12 // time passed from latest shift is more than
+                && !workers.get(id).isNightShift() // worker has not been assigned a nightShift
+                && !workers.get(id).getSeniority().equals("SM") // worker does not have the seniority 9 (shift manager) assigned to them
+                && workers.get(id).getSeniority().equals("SL");
 
     }
 
     public static void get_shifty(List<Worker> shift, Long startTime, int i, int j, Object[][] output, String shift_time, int shiftRequiredSize) {
+        boolean containsSL = false;
         while (shift.size() < shiftRequiredSize) {
             if (System.currentTimeMillis()-startTime > 5000){ // if the loop runs for longer than 5 seconds then the algorithm was unable to find a suitable distribution and the program needs to be restarted
                 boolean unfinished = true;
@@ -72,6 +86,32 @@ public class Parser {
             //generating randint
             Random r = new Random();
             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
+            // Checking for a suitable SL
+            while (!containsSL){
+                randint = r.nextInt((workers.size() - 2) + 1) + 1;
+                System.out.println("Shift does not contain SL");
+                if (suitable_SL(shift_time, randint, i, shift)) {
+                    System.out.println("Looking for SL");
+                    // Adding the worker to the shift.
+                    shift.add(workers.get(randint));
+                    containsSL = true;
+                    // Checking if the current shift, is a night one
+                    if (shift_time.equals("23-07;")) {
+                        // Setting hours since last shift to -8 so that they would have 8 + 8 hours of time to rest before next shift
+                        workers.get(randint).setHours_since_shift(-8);
+                        // Adding the 16 hours that they have worked
+                        workers.get(randint).setHours(workers.get(randint).getHours() + 16);
+                        // Editing the nightShift flag to avoid assigning multiple nightshifts
+                        workers.get(randint).setNightShift(true);
+                    } else {
+                        // Setting hours since last shift to 0 so that they would have time to rest before next shift
+                        workers.get(randint).setHours_since_shift(0);
+                        // Adding the 8 hours that they have worked
+                        workers.get(randint).setHours(workers.get(randint).getHours() + 8);
+                    }
+
+                }
+            }
             // Checking for a suitable worker
             if (suitable_worker(shift_time, randint, i, shift)) {
                 // Adding the worker to the shift.

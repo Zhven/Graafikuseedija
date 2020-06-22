@@ -3,14 +3,14 @@ Nothing really to explain here, basically a class for holding the data that is a
  */
 public class Worker {
     private String name;
-    private int seniority;
+    private String seniority;
     private int hours;
     private int hours_since_shift;
     private String[] days;
     private boolean nightShift;
 
 
-    public Worker(String name, int seniority, int hours, int hours_since_shift, String[] days) {
+    public Worker(String name, String seniority, int hours, int hours_since_shift, String[] days) {
         this.name = name;
         this.seniority = seniority;
         this.hours = hours;
@@ -35,7 +35,7 @@ public class Worker {
         return days;
     }
 
-    public int getSeniority() {
+    public String getSeniority() {
         return seniority;
     }
 
@@ -51,7 +51,7 @@ public class Worker {
         this.name = name;
     }
 
-    public void setSeniority(int seniority) {
+    public void setSeniority(String seniority) {
         this.seniority = seniority;
     }
 

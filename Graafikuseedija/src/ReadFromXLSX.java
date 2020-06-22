@@ -34,7 +34,8 @@ public class ReadFromXLSX {
                 }
 
                 if (!r.getCell(columnStart).getStringCellValue().equals("")){
-                    workers.add(new Worker(r.getCell(columnStart).getStringCellValue(), 0, 0, 24, new String[7])); //create a worker with the name value
+                    System.out.println(r.getCell(columnStart-1).getStringCellValue());
+                    workers.add(new Worker(r.getCell(columnStart).getStringCellValue(), r.getCell(columnStart-1).getStringCellValue(), 0, 24, new String[7])); //create a worker with the name value
                 }
 
                 int day = 0;
@@ -45,15 +46,17 @@ public class ReadFromXLSX {
                         // The spreadsheet is empty in this cell
 
                     }
+                    /*
                     else if (c.getStringCellValue().contains("SM")) { //SM's free shifts follow a different logic, which was not in the scope of this project
                         // The worker is in SM position
-                        workers.get(id).setSeniority(9);
+                        workers.get(id).setSeniority("SM");
                         // Add the free shift requests of SM position workers
                         if (cn>4){
                             workers.get(id).setDays(day, c.getStringCellValue());
                             day++;
                         }
                     }
+                     */
 
                     else {
                         if (cn>4){
@@ -65,6 +68,7 @@ public class ReadFromXLSX {
                 id++;
             }
         }catch (Exception e){
+            System.out.println(e);
             System.out.println("Error reading data from file");;
         }
         /*

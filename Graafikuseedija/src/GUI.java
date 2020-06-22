@@ -2,9 +2,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -30,7 +28,7 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Set window title
-        primaryStage.setTitle("Scheduler 2.0");
+        primaryStage.setTitle("Graafikuseedija 3.0");
         //Create menubar
         MenuBar menu = new MenuBar();
         Menu menuFile = new Menu("File");
@@ -41,12 +39,15 @@ public class GUI extends Application {
         about.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Label secondLabel = new Label("1. Insert the .xlsx file exported from the forms responses \n" +
-                        "2. You can check if the file was read correctly by checking the 'Names found from XLSX' field \n" +
-                        "3. Select the file name that the results will be saved as \n" +
-                        "4. Adjust the shift sizes \n" +
-                        "5. Click export \n" +
-                        "6. If no error show up you can open the file or open the file and close the program \n" +
+                Label secondLabel = new Label(
+                        "1. Modify the .xlsx file in Excel by adding any workers that did not submit wishes\n" +
+                        "and replacing the e-mail addresses with seniority (SM, SL) \n" +
+                        "2. Insert the modified .xlsx file \n" +
+                        "3. You can check if the file was read correctly by checking the 'Names found from XLSX' field \n" +
+                        "4. Select the file name that the results will be saved as \n" +
+                        "5. Adjust the shift sizes \n" +
+                        "6. Click export \n" +
+                        "7. If no error show up you can open the file or open the file and close the program \n" +
                         "\n" +
                         "The employees that are displayed underneath the graph do have 40h worth of shifts assigned to them. \n" +
                         "The number show how many hours they currently have assigned \n" +
@@ -230,8 +231,8 @@ public class GUI extends Application {
         sundayEvening.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
         sundayEvening.getSelectionModel().select(2);
         ComboBox<String> sundayNight = new ComboBox<String>();
-        sundayNight.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        sundayNight.getSelectionModel().select(1);
+        sundayNight.getItems().addAll("0","1", "2", "3", "4", "5", "6", "7", "8", "9");
+        sundayNight.getSelectionModel().select(0);
         sundayNight.setEditable(true);
         // Create buttons
         Button openFileBtn = new Button();
