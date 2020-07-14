@@ -1,6 +1,8 @@
 /*
 This class is about everything related to the logic behind making the work shifts
  */
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,6 @@ public class Parser {
             worker.setHours(0);
             worker.setNightShift(false);
         }
-        boolean unfinished = false;
         //iterating through output object to assign workers to shifts
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < output.length; i++) {
@@ -25,13 +26,13 @@ public class Parser {
                 List<Worker> shift = new ArrayList<>();
                 switch (j) {
                     case 0:
-                        get_shifty(shift, startTime, i, j, output, "07-15;", Integer.parseInt(output[i][j]));
+                        get_shifty(shift, startTime, i, j, output, "7-15", Integer.parseInt(output[i][j]));
                         break;
                     case 1:
-                        get_shifty(shift, startTime, i, j, output, "15-23;", Integer.parseInt(output[i][j]));
+                        get_shifty(shift, startTime, i, j, output, "15-23", Integer.parseInt(output[i][j]));
                         break;
                     case 2:
-                        get_shifty(shift, startTime, i, j, output, "23-07;", Integer.parseInt(output[i][j]));
+                        get_shifty(shift, startTime, i, j, output, "23-7", Integer.parseInt(output[i][j]));
                         break;
 
                 }
@@ -54,17 +55,28 @@ public class Parser {
     }
     //A method for checking if the given worker(id) can actually work
     public static boolean suitable_worker(String shift_time, int id, int day, List<Worker> shift){
+        /*
+        System.out.println("Nimi: "+workers.get(id).getName());
+        System.out.println("Töötaja request: " + workers.get(id).getDay(day));
+        System.out.println("Input day: " + day);
+        System.out.println("Shift_time: " + shift_time);
+        if (workers.get(id).getDay(day) != null) {
+            System.out.println("Kas töötaja info sisaldab shift_time väärtust: "+workers.get(id).getDay(day).contains(shift_time));
+        }
+        System.out.println();
+
+         */
         return (workers.get(id).getDay(day) == null // worker has not requested the day off
                 || !workers.get(id).getDay(day).contains(shift_time)) // worker has not requested the shift off
                 && !shift.contains(workers.get(id)) // worker is not already in the shift
                 && workers.get(id).getHours() != 40 // worker has not worked 40 hours already
                 && workers.get(id).getHours_since_shift() > 12 // time passed from latest shift is more than
                 && !workers.get(id).isNightShift() // worker has not been assigned a nightShift
-                && !workers.get(id).getSeniority().equals("SM"); // worker does not have the seniority 9 (shift manager) assigned to them
+                && !workers.get(id).getSeniority().equals("SM"); // worker does not have the seniority (shift manager) assigned to them
 
     }
     public static boolean suitable_SL(String shift_time, int id, int day, List<Worker> shift){
-        System.out.println("Testing worker" + id);
+        System.out.println("Testing worker " + id);
         return (workers.get(id).getDay(day) == null // worker has not requested the day off
                 || !workers.get(id).getDay(day).contains(shift_time)) // worker has not requested the shift off
                 && !shift.contains(workers.get(id)) // worker is not already in the shift
@@ -79,14 +91,17 @@ public class Parser {
     public static void get_shifty(List<Worker> shift, Long startTime, int i, int j, Object[][] output, String shift_time, int shiftRequiredSize) {
         boolean containsSL = false;
         while (shift.size() < shiftRequiredSize) {
-            if (System.currentTimeMillis()-startTime > 5000){ // if the loop runs for longer than 5 seconds then the algorithm was unable to find a suitable distribution and the program needs to be restarted
+            if (System.currentTimeMillis()-startTime > 100){ // if the loop runs for longer than 5 seconds then the algorithm was unable to find a suitable distribution and the program needs to be restarted
                 boolean unfinished = true;
                 break;
             }
+            //System.out.println(System.currentTimeMillis()-startTime);
             //generating randint
             Random r = new Random();
             int randint = r.nextInt((workers.size() - 2) + 1) + 1;
             // Checking for a suitable SL
+
+
             while (!containsSL){
                 randint = r.nextInt((workers.size() - 2) + 1) + 1;
                 System.out.println("Shift does not contain SL");
@@ -112,12 +127,15 @@ public class Parser {
 
                 }
             }
+
+
+
             // Checking for a suitable worker
             if (suitable_worker(shift_time, randint, i, shift)) {
                 // Adding the worker to the shift.
                 shift.add(workers.get(randint));
                 // Checking if the current shift, is a night one
-                if (shift_time.equals("23-07;")) {
+                if (shift_time.equals("23-7")) {
                     // Setting hours since last shift to -8 so that they would have 8 + 8 hours of time to rest before next shift
                     workers.get(randint).setHours_since_shift(-8);
                     // Adding the 16 hours that they have worked
@@ -131,7 +149,6 @@ public class Parser {
                     // Adding the 8 hours that they have worked
                     workers.get(randint).setHours(workers.get(randint).getHours() + 8);
                 }
-
             }
         }
         //Updating the time since shift for all other workers

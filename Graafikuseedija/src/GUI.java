@@ -15,7 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import org.apache.commons.codec.binary.StringUtils;
+//--module-path "C:\Users\Sven-Ervin.Paap\Downloads\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
 import java.awt.*;
 import java.io.*;
 import java.util.List;
@@ -47,7 +48,7 @@ public class GUI extends Application {
                         "4. Select the file name that the results will be saved as \n" +
                         "5. Adjust the shift sizes \n" +
                         "6. Click export \n" +
-                        "7. If no error show up you can open the file or open the file and close the program \n" +
+                        "7. If no errors show up you can open the file or open the file and close the program \n" +
                         "\n" +
                         "The employees that are displayed underneath the graph do have 40h worth of shifts assigned to them. \n" +
                         "The number show how many hours they currently have assigned \n" +
@@ -135,9 +136,9 @@ public class GUI extends Application {
         jobFailedAlert.setHeaderText("No suitable distributions found. Incomplete file is available to be opened");
         jobFailedAlert.setContentText("Please try to generate the graphs again. If the generation continues to fail, please check the inputs (shift sizes)");
         // Text fields for user input
-        TextField fileInput = new TextField();
+        TextField fileInput = new TextField("C:\\Users\\Sven-Ervin.Paap\\OneDrive - Playtech\\Desktop\\WS02-schedule-wishes_sisendfail - Copy.xlsx");
         fileInput.setMinWidth(450.0);
-        TextField fileOutput = new TextField();
+        TextField fileOutput = new TextField("C:\\Users\\Sven-Ervin.Paap\\OneDrive - Playtech\\Desktop\\testOutput.xlsx");
         // Text area for displaying data found in the chosen file
         TextArea inputFromFile = new TextArea();
         inputFromFile.setMinWidth(75);
@@ -146,94 +147,99 @@ public class GUI extends Application {
         //Monday
         ComboBox<String> mondayMorning = new ComboBox<String>();
         mondayMorning.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        mondayMorning.getSelectionModel().select(5);
         mondayMorning.setEditable(true);
+        mondayMorning.getSelectionModel().select(4);
         ComboBox<String> mondayEvening = new ComboBox<>();
         mondayEvening.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        mondayEvening.getSelectionModel().select(5);
         mondayEvening.setEditable(true);
+        mondayEvening.getSelectionModel().select(4);
         ComboBox<String> mondayNight = new ComboBox<>();
         mondayNight.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        mondayNight.getSelectionModel().select(2);
         mondayNight.setEditable(true);
+        mondayNight.getSelectionModel().select(2);
         //Tuesday
         ComboBox<String> tuesdayMorning = new ComboBox<>();
         tuesdayMorning.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        tuesdayMorning.getSelectionModel().select(5);
         tuesdayMorning.setEditable(true);
+        tuesdayMorning.getSelectionModel().select(4);
         ComboBox<String> tuesdayEvening = new ComboBox<String>();
         tuesdayEvening.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        tuesdayEvening.getSelectionModel().select(5);
         tuesdayEvening.setEditable(true);
+        tuesdayEvening.getSelectionModel().select(4);
         ComboBox<String> tuesdayNight = new ComboBox<String>();
         tuesdayNight.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        tuesdayNight.getSelectionModel().select(2);
         tuesdayNight.setEditable(true);
+        tuesdayNight.getSelectionModel().select(2);
         //Wednesday
         ComboBox<String> wednesdayMorning = new ComboBox<>();
         wednesdayMorning.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        wednesdayMorning.getSelectionModel().select(5);
         wednesdayMorning.setEditable(true);
+        wednesdayMorning.getSelectionModel().select(5);
         ComboBox<String> wednesdayEvening = new ComboBox<>();
         wednesdayEvening.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        wednesdayEvening.getSelectionModel().select(5);
         wednesdayEvening.setEditable(true);
+        wednesdayEvening.getSelectionModel().select(5);
         ComboBox<String> wednesdayNight = new ComboBox<>();
         wednesdayNight.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        wednesdayNight.getSelectionModel().select(2);
         wednesdayNight.setEditable(true);
+        wednesdayNight.getSelectionModel().select(2);
         //Thursday
         ComboBox<String> thursdayMorning = new ComboBox<String>();
         thursdayMorning.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        thursdayMorning.getSelectionModel().select(5);
         thursdayMorning.setEditable(true);
+        thursdayMorning.getSelectionModel().select(4);
         ComboBox<String> thursdayEvening = new ComboBox<String>();
         thursdayEvening.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        thursdayEvening.getSelectionModel().select(5);
         thursdayEvening.setEditable(true);
+        thursdayEvening.getSelectionModel().select(5);
         ComboBox<String> thursdayNight = new ComboBox<>();
         thursdayNight.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        thursdayNight.getSelectionModel().select(2);
         thursdayNight.setEditable(true);
+        thursdayNight.getSelectionModel().select(2);
         //Friday
         ComboBox<String> fridayMorning = new ComboBox<String>();
         fridayMorning.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        fridayMorning.getSelectionModel().select(5);
         fridayMorning.setEditable(true);
+        fridayMorning.getSelectionModel().select(4);
         ComboBox<String> fridayEvening = new ComboBox<>();
         fridayEvening.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        fridayEvening.getSelectionModel().select(5);
         fridayEvening.setEditable(true);
+        fridayEvening.getSelectionModel().select(5);
         ComboBox<String> fridayNight = new ComboBox<>();
         fridayNight.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        fridayNight.getSelectionModel().select(2);
         fridayNight.setEditable(true);
+        fridayNight.getSelectionModel().select(2);
         //Saturday
         ComboBox<String> saturdayMorning = new ComboBox<>();
         saturdayMorning.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        saturdayMorning.getSelectionModel().select(2);
         saturdayMorning.setEditable(true);
+        saturdayMorning.getSelectionModel().select(2);
         ComboBox<String> saturdayEvening = new ComboBox<String>();
         saturdayEvening.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        saturdayEvening.getSelectionModel().select(2);
         saturdayEvening.setEditable(true);
+        saturdayEvening.getSelectionModel().select(1);
         ComboBox<String> saturdayNight = new ComboBox<String>();
         saturdayNight.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        saturdayNight.getSelectionModel().select(1);
         saturdayNight.setEditable(true);
+        saturdayNight.getSelectionModel().select(1);
         //Sunday
         ComboBox<String> sundayMorning = new ComboBox<>();
         sundayMorning.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
-        sundayMorning.getSelectionModel().select(2);
         sundayMorning.setEditable(true);
+        sundayMorning.getSelectionModel().select(2);
         ComboBox<String> sundayEvening = new ComboBox<String>();
         sundayEvening.setEditable(true);
         sundayEvening.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
         sundayEvening.getSelectionModel().select(2);
         ComboBox<String> sundayNight = new ComboBox<String>();
         sundayNight.getItems().addAll("0","1", "2", "3", "4", "5", "6", "7", "8", "9");
-        sundayNight.getSelectionModel().select(0);
         sundayNight.setEditable(true);
+        sundayNight.getSelectionModel().select(0);
+        //Attempts
+        ComboBox<String> attempts = new ComboBox<>();
+        attempts.getItems().addAll("1", "5", "50", "100");
+        attempts.setEditable(true);
+        attempts.getSelectionModel().select(2);
         // Create buttons
         Button openFileBtn = new Button();
         openFileBtn.setText("Browse");
@@ -329,7 +335,6 @@ public class GUI extends Application {
                         // Get shift sizes array
                         String[][] shiftSizes = new String[7][3];
                         shiftSizes[0][0] = mondayMorning.getValue();
-                        System.out.println(shiftSizes[0][0]);
                         shiftSizes[0][1] = mondayEvening.getValue();
                         shiftSizes[0][2] = mondayNight.getValue();
                         shiftSizes[1][0] = tuesdayMorning.getValue();
@@ -351,16 +356,63 @@ public class GUI extends Application {
                         shiftSizes[6][1] = sundayEvening.getValue();
                         shiftSizes[6][2] = sundayNight.getValue();
 
-                        // Run graafikuseedija with the inputs from GUI and set some buttons visible if the genertion was successful
-                        if(Graafikuseedija.main(fileInput.getText(), fileOutput.getText(), shiftSizes)) {
-                            openBtn.setVisible(true);
-                            openAndCloseBtn.setVisible(true);
+
+                        ReadFromXLSX.setFileName(fileInput.getText());
+                        WriteToXLSX.setFileLocation(fileOutput.getText());
+
+                        String[][] week = Parser.parse(shiftSizes);
+                        boolean done = false;
+                        for (int i = 0; i < Integer.parseInt(attempts.getValue()); i++) {
+                            if (!done) {
+                                if (week.length < 4 || week[2][6].split("/", -1).length-1 < Integer.parseInt(sundayEvening.getValue())) {
+                                    ReadFromXLSX.setFileName(fileInput.getText());
+                                    shiftSizes[0][0] = mondayMorning.getValue();
+                                    shiftSizes[0][1] = mondayEvening.getValue();
+                                    shiftSizes[0][2] = mondayNight.getValue();
+                                    shiftSizes[1][0] = tuesdayMorning.getValue();
+                                    shiftSizes[1][1] = tuesdayEvening.getValue();
+                                    shiftSizes[1][2] = tuesdayNight.getValue();
+                                    shiftSizes[2][0] = wednesdayMorning.getValue();
+                                    shiftSizes[2][1] = wednesdayEvening.getValue();
+                                    shiftSizes[2][2] = wednesdayNight.getValue();
+                                    shiftSizes[3][0] = thursdayMorning.getValue();
+                                    shiftSizes[3][1] = thursdayEvening.getValue();
+                                    shiftSizes[3][2] = thursdayNight.getValue();
+                                    shiftSizes[4][0] = fridayMorning.getValue();
+                                    shiftSizes[4][1] = fridayEvening.getValue();
+                                    shiftSizes[4][2] = fridayNight.getValue();
+                                    shiftSizes[5][0] = saturdayMorning.getValue();
+                                    shiftSizes[5][1] = saturdayEvening.getValue();
+                                    shiftSizes[5][2] = saturdayNight.getValue();
+                                    shiftSizes[6][0] = sundayMorning.getValue();
+                                    shiftSizes[6][1] = sundayEvening.getValue();
+                                    shiftSizes[6][2] = sundayNight.getValue();
+                                    week = Parser.parse(shiftSizes);
+                                    System.out.println(i);
+                                } else {
+                                    done = true;
+                                }
+                            } else {
+                                break;
+                            }
+                        }
+                        WriteToXLSX.writeInput(week);
+                        openBtn.setVisible(true);
+                        openAndCloseBtn.setVisible(true);
+                        if (done) {
                             jobDoneAlert.showAndWait();
-                        } else {
-                            openBtn.setVisible(true);
-                            openAndCloseBtn.setVisible(true);
+                        } else  {
                             jobFailedAlert.showAndWait();
                         }
+
+
+                        /*
+                        // Run graafikuseedija with the inputs from GUI and set some buttons visible if the genertion was successful
+                        if(Graafikuseedija.main(fileInput.getText(), fileOutput.getText(), shiftSizes)) {
+                        } else {
+                        }
+
+                         */
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -371,6 +423,7 @@ public class GUI extends Application {
                 }
             }
         });
+
         Button advancedBtn = new Button();
         advancedBtn.setText("Advanced");
         advancedBtn.setOnAction(new EventHandler<ActionEvent>()
@@ -405,6 +458,8 @@ public class GUI extends Application {
         grid.add(openAndCloseBtn, 2, 14, 3,1);
 
         grid.add(generateBtn, 7, 14, 3,1);
+        grid.add(new Label("Ammount of generation attempts"), 11, 13);
+        grid.add(attempts, 11, 14);
 
         grid.add(new Label("Morning"), 0, 10);
         grid.add(new Label("Evening"), 0, 11);
@@ -452,8 +507,16 @@ public class GUI extends Application {
         // Add menu to the scene
         root.setTop(menus);
         // Add scene to stage
-        primaryStage.setScene(new Scene(root, 900, 500));
+        primaryStage.setScene(new Scene(root, 1200, 550));
         // Show stage
         primaryStage.show();
     }
 }
+/*
+final class Generator {
+    final void Generate(){
+        Graafikuseedija.main(fileInput.getText(), fileOutput.getText(), shiftSizes);
+    }
+}
+
+ */

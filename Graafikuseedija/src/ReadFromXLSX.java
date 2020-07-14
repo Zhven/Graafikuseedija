@@ -34,7 +34,7 @@ public class ReadFromXLSX {
                 }
 
                 if (!r.getCell(columnStart).getStringCellValue().equals("")){
-                    System.out.println(r.getCell(columnStart-1).getStringCellValue());
+                    //System.out.println(r.getCell(columnStart-1).getStringCellValue());
                     workers.add(new Worker(r.getCell(columnStart).getStringCellValue(), r.getCell(columnStart-1).getStringCellValue(), 0, 24, new String[7])); //create a worker with the name value
                 }
 
@@ -44,6 +44,12 @@ public class ReadFromXLSX {
                     Cell c = r.getCell(cn, Row.RETURN_BLANK_AS_NULL);
                     if (c == null) {
                         // The spreadsheet is empty in this cell
+                        if (cn>4){
+                            workers.get(id).setDays(day, null); // Set the free shift requests for each worker
+                            System.out.println(day);
+                            System.out.println(workers.get(id).getDay(day));
+                            day++;
+                        }
 
                     }
                     /*
@@ -61,10 +67,13 @@ public class ReadFromXLSX {
                     else {
                         if (cn>4){
                             workers.get(id).setDays(day, c.getStringCellValue()); // Set the free shift requests for each worker
+                            System.out.println(day);
+                            System.out.println(workers.get(id).getDay(day));
                             day++;
                         }
                     }
                 }
+                System.out.println(workers.get(id));
                 id++;
             }
         }catch (Exception e){

@@ -16,3 +16,12 @@ Old done:
     - Workbook styling on Apache.Poi's oluliselt piiratum kui esialgu arvasime seega hetkel lükkub edasi teise faasi
 - Projekti kirjelduse kirjutamine
 - kommenteerimine DONE
+
+
+
+-Töötajaid määratakse ilma graafikusoove austamata DONE
+-Jaotusi genereeritakse rohkem kui 1 kord. DONE- lisatud võimalus valida, mitud korda järjest proovitakse genereerimist.
+- Kui antud jaotusega ei õnnestu, siis proovib uuesti, aga lahutab hommikuse vahetuse suurusest ühe. Siis järgmise hommiku vahetusest ühe jne....
+V.A laupäev ja pühapäev
+-SL funktsionaalsus tegi asja kakti. Mis ja kus on katki? FIXED
+-Mõelda kas on võimalik äkki kuidagi arvutada mõistlikumalt vahetuste suurust
