@@ -356,16 +356,17 @@ public class GUI extends Application {
                         shiftSizes[6][1] = sundayEvening.getValue();
                         shiftSizes[6][2] = sundayNight.getValue();
 
-
+                        // Get read and write location
                         ReadFromXLSX.setFileName(fileInput.getText());
                         WriteToXLSX.setFileLocation(fileOutput.getText());
-
+                        // Generate graph
                         String[][] week = Parser.parse(shiftSizes);
+                        // Iterate the generation for set amount of times until a suitable distribution is found of the iterations run out
                         boolean done = false;
                         for (int i = 0; i < Integer.parseInt(attempts.getValue()); i++) {
                             if (!done) {
-                                if (week.length < 4 || week[2][6].split("/", -1).length-1 < Integer.parseInt(sundayEvening.getValue())) {
-                                    ReadFromXLSX.setFileName(fileInput.getText());
+                                if (week.length < 4 || week[2][6].split("/", -1).length-1 < Integer.parseInt(sundayEvening.getValue())) {  //Check if the Sunday evening shift contains the amount of workers that was set in the GUI
+                                    ReadFromXLSX.setFileName(fileInput.getText()); //Reset workers array (delete previous working hours)
                                     shiftSizes[0][0] = mondayMorning.getValue();
                                     shiftSizes[0][1] = mondayEvening.getValue();
                                     shiftSizes[0][2] = mondayNight.getValue();
@@ -387,8 +388,8 @@ public class GUI extends Application {
                                     shiftSizes[6][0] = sundayMorning.getValue();
                                     shiftSizes[6][1] = sundayEvening.getValue();
                                     shiftSizes[6][2] = sundayNight.getValue();
-                                    week = Parser.parse(shiftSizes);
-                                    System.out.println(i);
+                                    week = Parser.parse(shiftSizes); //Generate new distribution.
+                                    //System.out.println(i);
                                 } else {
                                     done = true;
                                 }
@@ -396,7 +397,8 @@ public class GUI extends Application {
                                 break;
                             }
                         }
-                        WriteToXLSX.writeInput(week);
+                        WriteToXLSX.writeInput(week); //Write the workers to Excel
+                        //GUI element actions
                         openBtn.setVisible(true);
                         openAndCloseBtn.setVisible(true);
                         if (done) {
