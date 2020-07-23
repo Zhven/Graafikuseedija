@@ -103,6 +103,10 @@ public class Parser {
 
 
             while (!containsSL){
+                if (System.currentTimeMillis()-startTime > 100){ // if the loop runs for longer than 5 seconds then the algorithm was unable to find a suitable distribution and the program needs to be restarted
+                    boolean unfinished = true;
+                    break;
+                }
                 randint = r.nextInt((workers.size() - 2) + 1) + 1;
                 System.out.println("Shift does not contain SL");
                 if (suitable_SL(shift_time, randint, i, shift)) {
@@ -111,7 +115,7 @@ public class Parser {
                     shift.add(workers.get(randint));
                     containsSL = true;
                     // Checking if the current shift, is a night one
-                    if (shift_time.equals("23-07;")) {
+                    if (shift_time.equals("23-7")) {
                         // Setting hours since last shift to -8 so that they would have 8 + 8 hours of time to rest before next shift
                         workers.get(randint).setHours_since_shift(-8);
                         // Adding the 16 hours that they have worked

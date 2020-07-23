@@ -136,9 +136,9 @@ public class GUI extends Application {
         jobFailedAlert.setHeaderText("No suitable distributions found. Incomplete file is available to be opened");
         jobFailedAlert.setContentText("Please try to generate the graphs again. If the generation continues to fail, please check the inputs (shift sizes)");
         // Text fields for user input
-        TextField fileInput = new TextField("C:\\Users\\Sven-Ervin.Paap\\OneDrive - Playtech\\Desktop\\WS02-schedule-wishes_sisendfail - Copy.xlsx");
+        TextField fileInput = new TextField("C:\\Users\\Sven-Ervin.Paap\\OneDrive - Playtech\\Desktop\\Graafikuseedija\\Sisend_Test_21.07_1.xlsx");
         fileInput.setMinWidth(450.0);
-        TextField fileOutput = new TextField("C:\\Users\\Sven-Ervin.Paap\\OneDrive - Playtech\\Desktop\\testOutput.xlsx");
+        TextField fileOutput = new TextField("C:\\Users\\Sven-Ervin.Paap\\OneDrive - Playtech\\Desktop\\Graafikuseedija\\testOutput.xlsx");
         // Text area for displaying data found in the chosen file
         TextArea inputFromFile = new TextArea();
         inputFromFile.setMinWidth(75);
@@ -240,6 +240,13 @@ public class GUI extends Application {
         attempts.getItems().addAll("1", "5", "50", "100");
         attempts.setEditable(true);
         attempts.getSelectionModel().select(2);
+        //Progress indicator
+        ProgressIndicator PI = new ProgressIndicator();
+        PI.setMinWidth(20);
+        PI.setMaxWidth(20);
+        PI.setMinHeight(20);
+        PI.setMaxHeight(20);
+        PI.setVisible(false);
         // Create buttons
         Button openFileBtn = new Button();
         openFileBtn.setText("Browse");
@@ -325,6 +332,8 @@ public class GUI extends Application {
             // Button to check for inputs and call the main function
             @Override
             public void handle(ActionEvent event) {
+
+                PI.setVisible(true);
 
                 if (fileInput.getText().isEmpty() || fileOutput.getText().isEmpty()) {
                     //insert error message

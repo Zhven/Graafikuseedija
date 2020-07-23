@@ -25,3 +25,10 @@ Old done:
 V.A laupäev ja pühapäev
 -SL funktsionaalsus tegi asja kakti. Mis ja kus on katki? FIXED
 -Mõelda kas on võimalik äkki kuidagi arvutada mõistlikumalt vahetuste suurust
+
+
+
+- Vahetuste jaotuse salvestamine. Peale kinni panemist oleks järgmisele käivitamisel salvestatud eelmine jaotus.
+- Genereerimine teisele threadile, et GUI oleks terve aja responsive.
+- Kõigepealt genereerida terve nädal SL vahetusi ja siis juurde mitte SL vahtused.
+-
