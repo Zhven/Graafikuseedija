@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.apache.commons.codec.binary.StringUtils;
 //--module-path "C:\Users\Sven-Ervin.Paap\Downloads\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
 import java.awt.*;
 import java.io.*;
@@ -327,112 +327,104 @@ public class GUI extends Application {
         });
         Button generateBtn = new Button();
         generateBtn.setText("Generate");
-        generateBtn.setOnAction(new EventHandler<ActionEvent>()
-        {
+        generateBtn.setOnAction(new EventHandler<ActionEvent>() {
+
             // Button to check for inputs and call the main function
-            @Override
-            public void handle(ActionEvent event) {
+                @Override
+                public void handle(ActionEvent event) {
+                    PI.setVisible(true);
 
-                PI.setVisible(true);
+                    if (fileInput.getText().isEmpty() || fileOutput.getText().isEmpty()) {
+                        //insert error message
+                        noFileSelectedAlert.showAndWait();
+                    }
+                    else {
+                        try {
+                            // Get shift sizes array
+                            String[][] shiftSizes = new String[7][3];
+                            shiftSizes[0][0] = mondayMorning.getValue();
+                            shiftSizes[0][1] = mondayEvening.getValue();
+                            shiftSizes[0][2] = mondayNight.getValue();
+                            shiftSizes[1][0] = tuesdayMorning.getValue();
+                            shiftSizes[1][1] = tuesdayEvening.getValue();
+                            shiftSizes[1][2] = tuesdayNight.getValue();
+                            shiftSizes[2][0] = wednesdayMorning.getValue();
+                            shiftSizes[2][1] = wednesdayEvening.getValue();
+                            shiftSizes[2][2] = wednesdayNight.getValue();
+                            shiftSizes[3][0] = thursdayMorning.getValue();
+                            shiftSizes[3][1] = thursdayEvening.getValue();
+                            shiftSizes[3][2] = thursdayNight.getValue();
+                            shiftSizes[4][0] = fridayMorning.getValue();
+                            shiftSizes[4][1] = fridayEvening.getValue();
+                            shiftSizes[4][2] = fridayNight.getValue();
+                            shiftSizes[5][0] = saturdayMorning.getValue();
+                            shiftSizes[5][1] = saturdayEvening.getValue();
+                            shiftSizes[5][2] = saturdayNight.getValue();
+                            shiftSizes[6][0] = sundayMorning.getValue();
+                            shiftSizes[6][1] = sundayEvening.getValue();
+                            shiftSizes[6][2] = sundayNight.getValue();
 
-                if (fileInput.getText().isEmpty() || fileOutput.getText().isEmpty()) {
-                    //insert error message
-                    noFileSelectedAlert.showAndWait();
-                }
-                else {
-                    try {
-                        // Get shift sizes array
-                        String[][] shiftSizes = new String[7][3];
-                        shiftSizes[0][0] = mondayMorning.getValue();
-                        shiftSizes[0][1] = mondayEvening.getValue();
-                        shiftSizes[0][2] = mondayNight.getValue();
-                        shiftSizes[1][0] = tuesdayMorning.getValue();
-                        shiftSizes[1][1] = tuesdayEvening.getValue();
-                        shiftSizes[1][2] = tuesdayNight.getValue();
-                        shiftSizes[2][0] = wednesdayMorning.getValue();
-                        shiftSizes[2][1] = wednesdayEvening.getValue();
-                        shiftSizes[2][2] = wednesdayNight.getValue();
-                        shiftSizes[3][0] = thursdayMorning.getValue();
-                        shiftSizes[3][1] = thursdayEvening.getValue();
-                        shiftSizes[3][2] = thursdayNight.getValue();
-                        shiftSizes[4][0] = fridayMorning.getValue();
-                        shiftSizes[4][1] = fridayEvening.getValue();
-                        shiftSizes[4][2] = fridayNight.getValue();
-                        shiftSizes[5][0] = saturdayMorning.getValue();
-                        shiftSizes[5][1] = saturdayEvening.getValue();
-                        shiftSizes[5][2] = saturdayNight.getValue();
-                        shiftSizes[6][0] = sundayMorning.getValue();
-                        shiftSizes[6][1] = sundayEvening.getValue();
-                        shiftSizes[6][2] = sundayNight.getValue();
+                            // Iterate the generation for set amount of times until a suitable distribution is found of the iterations run out
+                            final boolean[] done = {false};
+                            Thread thread = new Thread(() -> {
+                                System.out.println("Thread Running");
+                                for (int i = 0; i < Integer.parseInt(attempts.getValue()); i++) {
+                                    try {
+                                        if (Graafikuseedija.main(fileInput.getText(), fileOutput.getText(), shiftSizes, Integer.parseInt(sundayEvening.getValue()))) {
+                                            done[0] = true;
+                                            break;
+                                        } else {
+                                            ReadFromXLSX.setFileName(fileInput.getText()); //Reset workers array (delete previous working hours)
+                                            shiftSizes[0][0] = mondayMorning.getValue();
+                                            shiftSizes[0][1] = mondayEvening.getValue();
+                                            shiftSizes[0][2] = mondayNight.getValue();
+                                            shiftSizes[1][0] = tuesdayMorning.getValue();
+                                            shiftSizes[1][1] = tuesdayEvening.getValue();
+                                            shiftSizes[1][2] = tuesdayNight.getValue();
+                                            shiftSizes[2][0] = wednesdayMorning.getValue();
+                                            shiftSizes[2][1] = wednesdayEvening.getValue();
+                                            shiftSizes[2][2] = wednesdayNight.getValue();
+                                            shiftSizes[3][0] = thursdayMorning.getValue();
+                                            shiftSizes[3][1] = thursdayEvening.getValue();
+                                            shiftSizes[3][2] = thursdayNight.getValue();
+                                            shiftSizes[4][0] = fridayMorning.getValue();
+                                            shiftSizes[4][1] = fridayEvening.getValue();
+                                            shiftSizes[4][2] = fridayNight.getValue();
+                                            shiftSizes[5][0] = saturdayMorning.getValue();
+                                            shiftSizes[5][1] = saturdayEvening.getValue();
+                                            shiftSizes[5][2] = saturdayNight.getValue();
+                                            shiftSizes[6][0] = sundayMorning.getValue();
+                                            shiftSizes[6][1] = sundayEvening.getValue();
+                                            shiftSizes[6][2] = sundayNight.getValue();
+                                        }
 
-                        // Get read and write location
-                        ReadFromXLSX.setFileName(fileInput.getText());
-                        WriteToXLSX.setFileLocation(fileOutput.getText());
-                        // Generate graph
-                        String[][] week = Parser.parse(shiftSizes);
-                        // Iterate the generation for set amount of times until a suitable distribution is found of the iterations run out
-                        boolean done = false;
-                        for (int i = 0; i < Integer.parseInt(attempts.getValue()); i++) {
-                            if (!done) {
-                                if (week.length < 4 || week[2][6].split("/", -1).length-1 < Integer.parseInt(sundayEvening.getValue())) {  //Check if the Sunday evening shift contains the amount of workers that was set in the GUI
-                                    ReadFromXLSX.setFileName(fileInput.getText()); //Reset workers array (delete previous working hours)
-                                    shiftSizes[0][0] = mondayMorning.getValue();
-                                    shiftSizes[0][1] = mondayEvening.getValue();
-                                    shiftSizes[0][2] = mondayNight.getValue();
-                                    shiftSizes[1][0] = tuesdayMorning.getValue();
-                                    shiftSizes[1][1] = tuesdayEvening.getValue();
-                                    shiftSizes[1][2] = tuesdayNight.getValue();
-                                    shiftSizes[2][0] = wednesdayMorning.getValue();
-                                    shiftSizes[2][1] = wednesdayEvening.getValue();
-                                    shiftSizes[2][2] = wednesdayNight.getValue();
-                                    shiftSizes[3][0] = thursdayMorning.getValue();
-                                    shiftSizes[3][1] = thursdayEvening.getValue();
-                                    shiftSizes[3][2] = thursdayNight.getValue();
-                                    shiftSizes[4][0] = fridayMorning.getValue();
-                                    shiftSizes[4][1] = fridayEvening.getValue();
-                                    shiftSizes[4][2] = fridayNight.getValue();
-                                    shiftSizes[5][0] = saturdayMorning.getValue();
-                                    shiftSizes[5][1] = saturdayEvening.getValue();
-                                    shiftSizes[5][2] = saturdayNight.getValue();
-                                    shiftSizes[6][0] = sundayMorning.getValue();
-                                    shiftSizes[6][1] = sundayEvening.getValue();
-                                    shiftSizes[6][2] = sundayNight.getValue();
-                                    week = Parser.parse(shiftSizes); //Generate new distribution.
-                                    //System.out.println(i);
-                                } else {
-                                    done = true;
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
-                            } else {
-                                break;
-                            }
+                                Platform.runLater(() -> {
+                                    //GUI element actions
+                                    openBtn.setVisible(true);
+                                    openAndCloseBtn.setVisible(true);
+                                    PI.setVisible(false);
+                                    if (done[0]) {
+                                        jobDoneAlert.showAndWait();
+                                    } else {
+                                        jobFailedAlert.showAndWait();
+                                    }
+                                });
+                            });
+
+                            thread.start();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("Error");
+                            fatalErrorAlert.showAndWait();
+                            Platform.exit();
                         }
-                        WriteToXLSX.writeInput(week); //Write the workers to Excel
-                        //GUI element actions
-                        openBtn.setVisible(true);
-                        openAndCloseBtn.setVisible(true);
-                        if (done) {
-                            jobDoneAlert.showAndWait();
-                        } else  {
-                            jobFailedAlert.showAndWait();
-                        }
-
-
-                        /*
-                        // Run graafikuseedija with the inputs from GUI and set some buttons visible if the genertion was successful
-                        if(Graafikuseedija.main(fileInput.getText(), fileOutput.getText(), shiftSizes)) {
-                        } else {
-                        }
-
-                         */
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        System.out.println("Error");
-                        fatalErrorAlert.showAndWait();
-                        Platform.exit();
                     }
                 }
-            }
         });
 
         Button advancedBtn = new Button();
@@ -511,6 +503,8 @@ public class GUI extends Application {
         grid.add(sundayMorning, 7, 10);
         grid.add(sundayEvening, 7, 11);
         grid.add(sundayNight, 7, 12);
+
+        grid.add(PI, 9, 14);
 
         BorderPane root = new BorderPane();
         // Add grid to the scene

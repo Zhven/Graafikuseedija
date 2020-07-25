@@ -29,6 +29,6 @@ V.A laupäev ja pühapäev
 
 
 - Vahetuste jaotuse salvestamine. Peale kinni panemist oleks järgmisele käivitamisel salvestatud eelmine jaotus.
-- Genereerimine teisele threadile, et GUI oleks terve aja responsive.
+- Genereerimine teisele threadile, et GUI oleks terve aja responsive. DONE
 - Kõigepealt genereerida terve nädal SL vahetusi ja siis juurde mitte SL vahtused.
 -
