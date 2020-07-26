@@ -16,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-//--module-path "C:\Users\Sven-Ervin.Paap\Downloads\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
 import java.awt.*;
 import java.io.*;
 import java.util.List;
@@ -136,9 +135,9 @@ public class GUI extends Application {
         jobFailedAlert.setHeaderText("No suitable distributions found. Incomplete file is available to be opened");
         jobFailedAlert.setContentText("Please try to generate the graphs again. If the generation continues to fail, please check the inputs (shift sizes)");
         // Text fields for user input
-        TextField fileInput = new TextField("C:\\Users\\Sven-Ervin.Paap\\OneDrive - Playtech\\Desktop\\Graafikuseedija\\Sisend_Test_21.07_1.xlsx");
+        TextField fileInput = new TextField();
         fileInput.setMinWidth(450.0);
-        TextField fileOutput = new TextField("C:\\Users\\Sven-Ervin.Paap\\OneDrive - Playtech\\Desktop\\Graafikuseedija\\testOutput.xlsx");
+        TextField fileOutput = new TextField();
         // Text area for displaying data found in the chosen file
         TextArea inputFromFile = new TextArea();
         inputFromFile.setMinWidth(75);
